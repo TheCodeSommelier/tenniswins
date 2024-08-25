@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'coming_soon', to: 'pages#coming_soon'
   get 'membership', to: 'pages#membership'
   get 'contact', to: 'pages#contact'
+  get 'cookie_consent', to: 'pages#cookie_consent'
 end

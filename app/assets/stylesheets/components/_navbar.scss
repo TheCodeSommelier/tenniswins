@@ -1,0 +1,34 @@
+#navbar {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+
+
+  .logo-image {
+    width: 200px;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    color: $font-color;
+    text-decoration: none;
+    padding: 1rem;
+    border-bottom: 2px solid transparent;
+    font-weight: 700;
+    transition: $transition-prim;
+  }
+
+  .nav-link:hover, .active {
+    color: $primary;
+    border-bottom: 2px solid $primary;
+    transition: $transition-prim;
+  }
+}

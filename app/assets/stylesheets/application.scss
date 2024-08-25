@@ -1,0 +1,44 @@
+@import 'config/colors';
+@import 'config/fonts';
+
+@import 'pages/index';
+@import 'components/index';
+
+html, body {
+  background-color: $bg-color;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $heading-font;
+  margin: 0;
+  color: $font-color;
+}
+
+p, li, a, ul, ol {
+  font-family: $content-font;
+  color: $font-color;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background-color: $secondary;
+  color: #FFF;
+}
+
+.content-c {
+  padding: 0 12rem;
+}
+
+.highlight-prim {
+  color: $primary;
+}
+
+.highlight-sec {
+  color: $secondary;
+}

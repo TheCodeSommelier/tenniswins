@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   color: #fff;
+  font-size: 1rem;
   padding: 16px;
   background-color: $primary;
   transition: $transition-prim;
@@ -20,10 +21,12 @@
   align-items: center;
   justify-content: center;
   color: $primary;
+  font-size: 1rem;
   border: 2px solid $primary;
   padding: calc(16px - 2px);
   transition: $transition-prim;
   font-weight: 700;
+  background-color: #fff;
 
   &:hover {
     border: 2px solid $primary;

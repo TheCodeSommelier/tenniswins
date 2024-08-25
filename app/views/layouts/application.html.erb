@@ -10,11 +10,34 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-M974CWHL');
+
+      // Set default consent AFTER GTM loads
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
 
   <body>
     <%= render 'shared/navbar' %>
     <%= yield %>
     <%= render 'shared/footer' %>
+    <% unless controller_name == 'pages' && action_name == 'cookie_consent' %>
+      <%= render 'shared/cookie_consent_banner' %>
+    <% end %>
   </body>
 </html>

@@ -1,0 +1,15 @@
+#cookie-consent-banner-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFF;
+  padding: 20px;
+  z-index: 10;
+  border-top: 3px solid $primary;
+
+  .button-container {
+    width: 75%;
+    margin: 2rem auto;
+  }
+}

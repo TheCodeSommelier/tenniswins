@@ -1,0 +1,26 @@
+<div id="cookie-consent-container" data-controller="cookies">
+  <%= form_tag do |f| %>
+    <div class="checkboxes-container">
+      <div class="checkbox-container">
+        <%= check_box_tag 'neccessary', value: true, checked: true, disabled: true, class: "form-input form-check-input" %>
+        <%= label_tag 'neccessary', 'Neccessary' %>
+      </div>
+
+      <div class="checkbox-container">
+        <%= check_box_tag 'marketing', id: 'marketing', class: "form-input form-check-input", data: { cookies_target: 'marketingConsent' } %>
+        <%= label_tag 'marketing', 'Marketing' %>
+      </div>
+
+      <div class="checkbox-container">
+        <%= check_box_tag 'analytics', class: "form-input form-check-input", data: { cookies_target: 'anyliticsConsent' } %>
+        <%= label_tag 'analytics', 'Analytics' %>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <%= button_tag 'Accept all', class: "button-prim", data: { action: "click->cookies#acceptAllCookies"} %>
+      <%= button_tag 'Accept selected', class: "button-prim-outline", data: { action: "click->cookies#acceptPickedCookies"} %>
+      <%= button_tag 'Reject all', class: "button-prim-outline", data: { action: "click->cookies#denyAllCookies"} %>
+    </div>
+  <% end %>
+</div>

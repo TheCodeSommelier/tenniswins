@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
-  def landing_page; end
+  def home; end
 
-  def coming_soon; end
+  def coming_soon
+    @user = User.new
+  end
 
   def membership; end
 

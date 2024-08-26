@@ -61,14 +61,14 @@
     padding: 2rem;
 
     h2 {
-      color: #fff;
+      color: $bg-color;
     }
 
     .winning,
     .amount-made {
       font-size: 2rem;
       margin-top: 1rem;
-      color: #fff;
+      color: $bg-color;
     }
   }
 
@@ -96,6 +96,7 @@
     justify-content: center;
     flex-direction: column;
     border-right: 1px solid lightgrey;
+    padding: 0.3rem;
   }
 
   .step {
@@ -122,6 +123,7 @@
     font-size: 1.2rem;
     line-height: 1.7rem;
     transition: opacity 0.3s ease-in-out;
+    padding: 1.5rem;
   }
 
   .step-desc.fade-out {
@@ -131,43 +133,6 @@
   .step-desc.fade-in {
     opacity: 1;
   }
-
-  // .row-top, .row-bottom {
-  //   display: flex;
-  // }
-
-  // .row-top {
-  //   justify-content: space-between;
-  //   margin: 15px auto;
-  // }
-
-  // .row-bottom {
-  //   gap: 20px;
-  //   margin-top: 15px;
-  //   width: 75%;
-  // }
-
-  // .step {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: left;
-  //   flex-direction: column;
-  //   padding: 15px;
-  //   border: 2px solid $primary;
-  //   height: 100px;
-  //   width: 300px;
-
-  //   a {
-  //     color: $primary;
-  //     text-decoration: underline;
-  //     cursor: pointer;
-  //   }
-
-  //   h3, p {
-  //     width: 100%;
-  //     text-align: left;
-  //   }
-  // }
 
   // Success stories
   .button-prim-success-sec {
@@ -269,7 +234,7 @@
 
     h2,
     li {
-      color: #fff;
+      color: $bg-color;
     }
   }
 

@@ -1,1 +1,68 @@
-<h1>Coming soon!!</h1>
+<!-- Logo
+
+We're putting the final touches on our platform to bring you expert-driven tennis picks, backed by deep research and cutting-edge AI technology.
+
+Be the First to Know When We Launch!
+
+Leave your email below to get early access, and exclusive updates. We will email you daily picks straight to your email for FREE till our platform is ready!
+Don’t miss out on the opportunity to be part of something big!
+
+[Email Capture Form]
+
+info@tenniswins.com -->
+
+
+<div id="coming-soon">
+  <%= image_tag 'logo_white.png', class: "logo" %>
+
+  <div class="marketing-and-form">
+    <div class="marketing">
+      <h1 class="highlight-prim">Be the First to Know When We Launch!</h1>
+      <br>
+      <p>We're putting the final touches on our platform to bring you <span class="highlight-prim">expert-driven</span> tennis picks, backed by deep <span class="highlight-prim">research</span> and cutting-edge <span class="highlight-prim">AI technology</span>.</p>
+      <br>
+      <p>Leave your <span class="highlight-prim">email below to get early access, and exclusive updates</span>. We will email you <span class="highlight-prim">daily picks</span> straight to your email for <span class="highlight-prim">FREE</span> till our platform is ready!</p>
+      <br>
+      <p>Don’t miss out on the opportunity to be part of something big!</p>
+    </div>
+
+    <%= form_for(@user, url: registration_path(@user)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: @user %>
+
+      <div class="name-inputs">
+        <div class="field">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, placeholder: "John" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, placeholder: "Doe" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@example.com" %>
+      </div>
+
+      <div class="field">
+        <label for="user_password">Password
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </label>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "button-prim" %>
+      </div>
+    <% end %>
+  </div>
+</div>

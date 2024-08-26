@@ -36,6 +36,7 @@
     <%= render 'shared/navbar' %>
     <%= yield %>
     <%= render 'shared/footer' %>
+    <%= render 'shared/flashes' %>
     <% unless controller_name == 'pages' && action_name == 'cookie_consent' %>
       <%= render 'shared/cookie_consent_banner' %>
     <% end %>

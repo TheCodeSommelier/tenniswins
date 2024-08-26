@@ -3,16 +3,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: $bg-color;
   font-size: 1rem;
-  padding: 16px;
+  padding: 1rem;
   background-color: $primary;
   transition: $transition-prim;
   font-weight: 700;
+  cursor: pointer;
 
   &:hover {
-    background-color: rgba($color: $primary, $alpha: 0.5);
+    background-color: #dfff3f;
+    color: $font-dark;
     transition: $transition-prim;
+    box-shadow: 0 0 10px $primary;
   }
 }
 
@@ -26,47 +29,13 @@
   padding: calc(16px - 2px);
   transition: $transition-prim;
   font-weight: 700;
-  background-color: #fff;
+  cursor: pointer;
+  background-color: $bg-color;
 
   &:hover {
     border: 2px solid $primary;
-    color: #fff;
+    color: $bg-color;
     background-color: $primary;
-    transition: $transition-prim;
-  }
-}
-
-// Secondary button
-.button-sec {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding: 16px;
-  background-color: $secondary;
-  transition: $transition-prim;
-  font-weight: 700;
-
-  &:hover {
-    background-color: rgba($color: $secondary, $alpha: 0.5);
-    transition: $transition-prim;
-  }
-}
-
-.button-sec-outline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: $secondary;
-  border: 2px solid $secondary;
-  padding: calc(16px - 2px);
-  transition: $transition-prim;
-  font-weight: 700;
-
-  &:hover {
-    border: 2px solid $secondary;
-    color: #fff;
-    background-color: $secondary;
     transition: $transition-prim;
   }
 }

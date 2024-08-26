@@ -71,3 +71,5 @@ group :test do
 end
 
 gem 'ngrok'
+
+gem 'devise'

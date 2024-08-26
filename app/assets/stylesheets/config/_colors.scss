@@ -1,16 +1,14 @@
 // Base
-$bg-color: #ffffff;
-$font-color: #262a27;
+$bg-color: #060701;
+$font-light: #f7f8f1;
+$font-dark: #22231c;
 $transition-prim: 0.3s ease-in;
 
 // Primary
-$primary: #61CE70;
-$bg-prim-gradient: linear-gradient(45deg, $primary, #82e58f 80%);
-
-// Secondary
-$secondary: #da4b13;
+$primary: #C1E021;
+$bg-prim-gradient: linear-gradient(45deg, $primary, #dfff3f 80%);
 
 // System
-$s-success: $primary;
-$s-danger: #ff3c2e;
-$s-warning: #ffdc2e;
+$s-success: #47f95e;
+$s-danger: rgb(251, 75, 62);
+$s-warning: #ffde38;

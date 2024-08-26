@@ -1,0 +1,16 @@
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.alert-success {
+  background-color: rgba($color: $s-success, $alpha: 0.5);
+  border-color: rgba($color: $s-success, $alpha: 1);
+  color: $font-light;
+}
+
+.alert-error {
+  background-color: rgba($color: $s-danger, $alpha: 0.5);
+  border: 2px solid rgba($color: $s-danger, $alpha: 1);
+  color: $font-light;
+}

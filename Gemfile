@@ -70,6 +70,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'dotenv'
+
 gem 'ngrok'
 
 gem 'devise'

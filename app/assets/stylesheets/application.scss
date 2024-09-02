@@ -8,6 +8,7 @@ html, body {
   background-color: $bg-color;
   margin: 0;
   scroll-behavior: smooth;
+  padding-bottom: 3rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -58,6 +59,7 @@ input[type="checkbox"] {
   &:checked {
     background-color: rgba($color: $primary, $alpha: 1.0);
     border: none;
+    color: $font-dark;
 
     &::after {
       content: '\2713';
@@ -65,7 +67,7 @@ input[type="checkbox"] {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: white;
+      color: $font-dark;
       font-size: 0.8rem;
     }
   }
@@ -98,8 +100,20 @@ input[type="password"], input[type="password"]::placeholder {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
 
   .field {
-    width: calc(50% - 1rem);
+    width: calc(50% - 2rem);
+  }
+}
+
+.field_with_errors {
+  width: 100%;
+  display: block;
+
+  input {
+    border: 1px solid $s-danger;
+    box-shadow: 0 0 1rem $s-danger;
+    width: 100%;
   }
 }

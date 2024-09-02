@@ -1,9 +1,9 @@
 #cookie-consent-banner-container {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #FFF;
+  background-color: $bg-color;
   padding: 20px;
   z-index: 10;
   border-top: 3px solid $primary;
@@ -11,5 +11,17 @@
   .button-container {
     width: 75%;
     margin: 2rem auto;
+  }
+}
+
+@media (max-width: 600px) {
+  #cookie-consent-banner-container {
+    padding: 0;
+
+    .checkboxes-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 1rem;
+    }
   }
 }

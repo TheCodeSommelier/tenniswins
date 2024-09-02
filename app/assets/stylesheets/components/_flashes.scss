@@ -1,16 +1,29 @@
-.alert {
-  padding: 10px;
-  margin-bottom: 10px;
+.flash-message {
+  padding: 1rem;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 25%;
+
+  li {
+    margin: 0.5rem 1rem;
+  }
+
+  .button-prim {
+    padding: 0.2rem 0.5rem;
+    position: relative;
+    left: 93%;
+  }
 }
 
-.alert-success {
-  background-color: rgba($color: $s-success, $alpha: 0.5);
-  border-color: rgba($color: $s-success, $alpha: 1);
+.success {
+  background-color: $bg-color;
+  border-color: solid 2px $primary;
   color: $font-light;
 }
 
-.alert-error {
-  background-color: rgba($color: $s-danger, $alpha: 0.5);
+.alert {
+  background-color: $bg-color;
   border: 2px solid rgba($color: $s-danger, $alpha: 1);
   color: $font-light;
 }

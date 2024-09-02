@@ -18,7 +18,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@example.com" %>
     </div>
 
@@ -28,12 +28,11 @@
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
       </label>
-      <br />
       <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••" %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••" %>
     </div>
 

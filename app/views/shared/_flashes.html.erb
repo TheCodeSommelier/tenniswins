@@ -1,5 +1,26 @@
-<% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %>">
-    <%= message %>
+<% if flash[:notice] %>
+  <div class="flash-message success">
+    <% Array(flash[:notice]).each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
   </div>
 <% end %>
+
+<% if flash[:alert] %>
+  <div class="flash-message alert">
+    <button class="button-prim" onclick="closeFlash()">x</button>
+    <h3>Please correct the following issues:</h5>
+    <ul>
+      <% Array(flash[:alert]).each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<script>
+  function closeFlash() {
+    const flashMessage = document.querySelector(".flash-message");
+    flashMessage.remove()
+  }
+</script>

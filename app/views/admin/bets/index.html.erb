@@ -1,0 +1,14 @@
+<div id="dashboard-cont">
+  <div class="buttons-cont">
+    <%= link_to new_admin_bet_path, class: "button-prim" do %>
+      <%= icon('fa-solid', 'plus')%>Create a bet
+    <% end %>
+  </div>
+
+  <div class="bets-grid">
+    <% @bets.each do |bet| %>
+      <div class="bet-card">
+      </div>
+    <% end %>
+  </div>
+</div>

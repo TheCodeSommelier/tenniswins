@@ -4,6 +4,8 @@
 @import 'pages/index';
 @import 'components/index';
 
+@import "font-awesome";
+
 html, body {
   background-color: $bg-color;
   margin: 0;
@@ -85,6 +87,11 @@ input {
   font-size: 1rem;
   color: $font-dark;
   background-color: #ffffff;
+
+  &:disabled {
+    border: 1.2px solid rgba($color: $primary, $alpha: 0.7);
+    background-color: rgba($color: #ffffff, $alpha: 0.7);
+  }
 }
 
 :focus {

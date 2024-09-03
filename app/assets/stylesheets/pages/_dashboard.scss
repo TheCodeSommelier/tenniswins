@@ -1,0 +1,11 @@
+#dashboard-cont {
+  padding: 0 9rem;
+
+  .buttons-cont {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 25%;
+    gap: 20px;
+  }
+}

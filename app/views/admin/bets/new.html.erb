@@ -1,0 +1,6 @@
+<div id="new-bets-cont">
+  <%= form_with model: @bet, url: admin_bets_path, data: { controller: "bets" } do |f| %>
+    <button data-action="click->bets#addBetForm" class="button-prim-outline" type="button">Add pick</button>
+    <%= f.submit 'Create bet', class: "button-prim" %>
+  <% end %>
+</div>

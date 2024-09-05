@@ -39,3 +39,49 @@
     transition: $transition-prim;
   }
 }
+
+// System buttons
+
+.button-danger-outline {
+  border: 2px solid $s-danger;
+  padding: 0.5rem;
+  background-color: $bg-color;
+  color: $s-danger;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $s-danger;
+    color: $font-light;
+    transition: 0.3s ease-in;
+  }
+}
+
+.button-success-outline {
+  border: 2px solid $s-success;
+  padding: 0.5rem;
+  background-color: $bg-color;
+  color: $s-success;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $s-success;
+    color: $font-dark;
+    transition: 0.3s ease-in;
+  }
+}
+
+.button-warning-outline {
+  border: 2px solid $s-warning;
+  padding: 0.5rem;
+  background-color: $bg-color;
+  color: $s-success;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $s-warning;
+    color: $font-light;
+    transition: 0.3s ease-in;
+  }
+}

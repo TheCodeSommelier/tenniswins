@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PickTest < ActiveSupport::TestCase
+class BetTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

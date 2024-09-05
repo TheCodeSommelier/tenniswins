@@ -75,3 +75,7 @@ gem 'dotenv'
 gem 'ngrok'
 
 gem 'devise'
+
+gem 'pundit'
+
+gem "font-awesome-sass"

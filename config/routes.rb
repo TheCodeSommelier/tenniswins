@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'email_captures/create'
   devise_for :users, controllers: { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,4 +13,10 @@ Rails.application.routes.draw do
   get 'membership', to: 'pages#membership'
   get 'contact', to: 'pages#contact'
   get 'cookie_consent', to: 'pages#cookie_consent'
+
+  namespace :admin do
+    resources :bets, except: %i[show]
+    post 'bets/matches_autocomplete', to: 'bets#matches_autocomplete'
+    patch 'bet_won', to: 'bets#bet_won', as: :bet_won
+  end
 end

@@ -1,0 +1,48 @@
+<div id="dashboard-cont">
+  <div class="buttons-cont">
+    <%= link_to new_admin_bet_path, class: "button-prim" do %>
+      <%= icon('fa-solid', 'plus')%>Create a bet
+    <% end %>
+  </div>
+
+  <% grouped_bets = @bets.group_by { |bet| bet.parlay_group || bet.id } %>
+
+  <% grouped_bets.each do |key, bets| %>
+    <div class="card">
+      <div class="card-body">
+        <div class="bet-type-result">
+          <% if bets.first.parlay_group %>
+            <h3>Parlay</h3>
+          <% else %>
+            <h3>Pick</h3>
+          <% end %>
+
+          <% if bets.first.won? %>
+            <p class="won">W</p>
+          <% else %>
+            <p class="loss">L</p>
+          <% end %>
+        </div>
+        <div class="matches-grid">
+          <% bets.each do |bet| %>
+            <div class="match-column">
+              <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
+              <p><strong>Odds:</strong> <%= bet.odds %> | <strong>US Odds:</strong> <%= bet.us_odds %></p>
+            </div>
+          <% end %>
+        </div>
+        <% if bets.first.parlay_group %>
+          <div>
+            <p class="total-odds">
+              <strong>Total Odds:</strong> <%= calculate_total_odds(bets) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="buttons-cont">
+        <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline" %>
+        <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline" %>
+      </div>
+    </div>
+  <% end %>
+</div>

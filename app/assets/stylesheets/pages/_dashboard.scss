@@ -1,0 +1,63 @@
+#dashboard-cont {
+  padding: 0 9rem;
+
+  .bet-type-result {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .buttons-cont {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 25%;
+    gap: 20px;
+  }
+
+  .card {
+    margin-top: 1rem;
+    padding: 12px;
+    border: solid 2px $primary;
+    display: flex;
+    justify-content: space-between;
+
+    .won, .loss {
+      padding: 5px;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .loss {
+      background-color: rgba($color: $s-danger, $alpha: 0.5);
+      border: solid 1px $s-danger;
+    }
+
+    .won {
+      background-color: rgba($color: $s-success, $alpha: 0.5);
+      border: solid 1px $s-success;
+    }
+  }
+
+  .card-body, .total-odds, .card-match-name {
+    margin-top: 0.5rem;
+  }
+
+  .card-match-name {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .matches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+
+  .buttons-cont {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    width: fit-content;
+  }
+}

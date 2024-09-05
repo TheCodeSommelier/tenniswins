@@ -1,5 +1,6 @@
 <% if flash[:notice] %>
   <div class="flash-message success">
+    <button class="button-prim" onclick="closeFlash()">x</button>
     <% Array(flash[:notice]).each do |msg| %>
       <p><%= msg %></p>
     <% end %>

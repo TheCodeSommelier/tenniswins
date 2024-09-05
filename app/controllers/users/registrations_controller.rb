@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     if resource.save
+      p "🔥 I ran"
       redirect_to root_path, notice: 'Your account has been created!'
     else
       p "🔥 I ran #{resource.errors.full_messages}"

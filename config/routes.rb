@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :bets, except: %i[show]
     post 'bets/matches_autocomplete', to: 'bets#matches_autocomplete'
+    patch 'bet_won', to: 'bets#bet_won', as: :bet_won
   end
 end

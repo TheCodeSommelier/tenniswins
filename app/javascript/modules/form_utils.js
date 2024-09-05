@@ -42,6 +42,7 @@ export default class FormUtils {
       options.classes.forEach((className) => button.classList.add(className));
     if (options.data) this.#createDataAttrs(options.data, button);
     if (options.id) button.setAttribute("id", options.id);
+    if (options.type) button.setAttribute("type", options.type);
     if (options.text) button.innerText = options.text;
 
     return button;

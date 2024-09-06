@@ -1,12 +1,15 @@
 class Admin::BetsController < ApplicationController
+
   def index
     # @bets = Bet.where('created_at > ?', Time.current - 2.days)
-    @bets = Bet.all
+    @bets = policy_scope(Bet.all)
+    authorize @bets
   end
 
   def new
     @matches = Match.all
     @bet = Bet.new
+    authorize @bet
   end
 
   def create
@@ -21,6 +24,8 @@ class Admin::BetsController < ApplicationController
       bet
     end
 
+    authorize @bets
+
     if @bets.all?(&:valid?)
       @bets.each(&:save)
       redirect_to admin_bets_path, notice: 'Your pick/parlay is created!'
@@ -29,6 +34,12 @@ class Admin::BetsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    authorize @bet
+  end
+
+  def update; end
 
   def matches_autocomplete
     @matches = Match.where('name ILIKE ?', "#{params[:query]}%")
@@ -51,6 +62,10 @@ class Admin::BetsController < ApplicationController
   end
 
   private
+
+  def set_bet
+    @bets = Bet.find_by(parlay_group: params[:id]) || Bet.find(params[:id].to_i)
+  end
 
   def bets_params
     params.require(:bets).permit!.tap do |whitelisted|

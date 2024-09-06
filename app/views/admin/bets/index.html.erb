@@ -27,7 +27,7 @@
           <% bets.each do |bet| %>
             <div class="match-column">
               <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
-              <p><strong>Odds:</strong> <%= bet.odds %> | <strong>US Odds:</strong> <%= bet.us_odds %></p>
+              <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
             </div>
           <% end %>
         </div>

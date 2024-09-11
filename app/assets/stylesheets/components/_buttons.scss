@@ -75,13 +75,13 @@
   border: 2px solid $s-warning;
   padding: 0.5rem;
   background-color: $bg-color;
-  color: $s-success;
+  color: $s-warning;
   transition: 0.3s ease-in;
   cursor: pointer;
 
   &:hover {
     background-color: $s-warning;
-    color: $font-light;
+    color: $font-dark;
     transition: 0.3s ease-in;
   }
 }

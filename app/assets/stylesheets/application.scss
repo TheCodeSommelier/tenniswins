@@ -124,3 +124,9 @@ input[type="password"], input[type="password"]::placeholder {
     width: 100%;
   }
 }
+
+button, a {
+  & i {
+    margin-right: 8px;
+  }
+}

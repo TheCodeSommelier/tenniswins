@@ -6,6 +6,7 @@ export default class FormUtils {
     if (options.step) input.setAttribute("step", options.step);
     if (options.name) input.setAttribute("name", options.name);
     if (options.id) input.setAttribute("id", options.id);
+    if (options.value) input.value = options.value;
     if (options.placeholder)
       input.setAttribute("placeholder", options.placeholder);
     if (options.classes)

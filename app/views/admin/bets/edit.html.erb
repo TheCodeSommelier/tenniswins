@@ -1,0 +1,5 @@
+<div id="edit-bets-cont" data-controller="edit-bets bets">
+  <%= form_for @bet, url: admin_bet_path(@bet), method: :patch do |f| %>
+    <%= f.submit "Update bets", class: "button-prim" %>
+  <% end %>
+</div>

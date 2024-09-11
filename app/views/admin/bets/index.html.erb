@@ -27,7 +27,7 @@
           <% bets.each do |bet| %>
             <div class="match-column">
               <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
-              <p><strong>Odds:</strong> <%= bet.odds %> | <strong>US Odds:</strong> <%= bet.us_odds %></p>
+              <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
             </div>
           <% end %>
         </div>
@@ -40,6 +40,7 @@
         <% end %>
       </div>
       <div class="buttons-cont">
+        <%= link_to 'Edit', edit_admin_bet_path(bets.first.id), class: "button-warning-outline" %>
         <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline" %>
         <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline" %>
       </div>

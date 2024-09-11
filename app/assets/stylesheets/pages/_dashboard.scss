@@ -7,14 +7,6 @@
     align-items: center;
   }
 
-  .buttons-cont {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 25%;
-    gap: 20px;
-  }
-
   .card {
     margin-top: 1rem;
     padding: 12px;
@@ -59,5 +51,14 @@
     align-items: start;
     justify-content: end;
     width: fit-content;
+    gap: 20px;
+  }
+
+  .button-warning-outline {
+    font-size: 13px;
+  }
+
+  .separator {
+    margin: 0 1rem;
   }
 }

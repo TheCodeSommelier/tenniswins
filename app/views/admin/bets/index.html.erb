@@ -40,6 +40,7 @@
         <% end %>
       </div>
       <div class="buttons-cont">
+        <%= link_to 'Edit', edit_admin_bet_path(bets.first.id), class: "button-warning-outline" %>
         <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline" %>
         <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline" %>
       </div>

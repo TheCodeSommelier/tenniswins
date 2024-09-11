@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMatchesParleys < ActiveRecord::Migration[7.1]
   def change
     create_table :matches_parleys do |t|

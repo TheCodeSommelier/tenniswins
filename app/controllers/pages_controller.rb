@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    @number_won_bets = Bet.where(won: true).count
+    @number_won_bets = Bet.number_won_bets
 
     single_bet_money_made = Bet.where(won: true, parlay_group: nil).sum('100 * (odds - 1)')
 

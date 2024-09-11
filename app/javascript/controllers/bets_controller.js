@@ -7,9 +7,11 @@ export default class extends Controller {
   static targets = ["results", "decimalInput", "result"];
 
   connect() {
-    this.formUtils = new FormUtils
-    this.betFormBuilder = new BetFormBuilder(this.formUtils)
-    this.betFormBuilder.buildBetForm()
+    if (!this.element.dataset.controller.includes("edit-bets")) {
+      this.formUtils = new FormUtils
+      this.betFormBuilder = new BetFormBuilder(this.formUtils)
+      this.betFormBuilder.buildBetForm()
+    }
   }
 
   addBetForm() {

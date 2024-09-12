@@ -5,9 +5,7 @@ module Admin
     before_action :set_bets, only: %i[edit update]
 
     def index
-      # @bets = Bet.where('created_at > ?', Time.current - 2.days)
-      @bets = policy_scope(Bet.all)
-      authorize @bets
+      @bets = policy_scope(Bet)
     end
 
     def new
@@ -44,25 +42,18 @@ module Admin
     end
 
     def update
-      # Authorize the bet
       authorize @bet
 
-      # Determine the bets to update
       @bets = @bet.part_of_parlay? ? Bet.where(parlay_group: @bet.parlay_group) : [@bet]
 
-      # Use strong parameters
       permitted_params = bets_params.to_h
 
-      # Initialize success flag
       update_successful = true
 
-      # Iterate over each bet and find matching parameter data by bet_id
       @bets.each do |bet|
-        # Find the corresponding bet_data using the `betId`
         bet_data = permitted_params.values.find { |data| data[:betId].to_i == bet.id }
 
         if bet_data
-          # Perform the update on the bet and its associated match
           unless bet.update(bet_data.except(:name, :betId)) && bet.match.update(name: bet_data[:name])
             update_successful = false
             break

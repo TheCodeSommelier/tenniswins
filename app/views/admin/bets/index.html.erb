@@ -1,9 +1,11 @@
 <div id="dashboard-cont">
-  <div class="buttons-cont">
-    <%= link_to new_admin_bet_path, class: "button-prim" do %>
-      <%= icon('fa-solid', 'plus')%>Create a bet
-    <% end %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="buttons-cont">
+      <%= link_to new_admin_bet_path, class: "button-prim" do %>
+        <%= icon('fa-solid', 'plus')%>Create a bet
+      <% end %>
+    </div>
+  <% end %>
 
   <% grouped_bets = @bets.group_by { |bet| bet.parlay_group || bet.id } %>
 
@@ -26,6 +28,7 @@
         <div class="matches-grid">
           <% bets.each do |bet| %>
             <div class="match-column">
+              <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
               <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
               <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
             </div>
@@ -39,11 +42,13 @@
           </div>
         <% end %>
       </div>
-      <div class="buttons-cont">
-        <%= link_to 'Edit', edit_admin_bet_path(bets.first.id), class: "button-warning-outline" %>
-        <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline" %>
-        <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline" %>
-      </div>
+      <% if current_user.admin? %>
+        <div class="buttons-cont">
+          <%= link_to 'Edit', edit_admin_bet_path(bets.first.id), class: "button-warning-outline" %>
+          <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline" %>
+          <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline" %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

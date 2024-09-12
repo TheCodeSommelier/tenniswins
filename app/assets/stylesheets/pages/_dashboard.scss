@@ -13,6 +13,7 @@
     border: solid 2px $primary;
     display: flex;
     justify-content: space-between;
+    position: relative;
 
     .won, .loss {
       padding: 5px;
@@ -60,5 +61,13 @@
 
   .separator {
     margin: 0 1rem;
+  }
+
+  .bet-date-mar {
+    margin: 0.5rem 0;
+
+    span {
+      font-style: italic;
+    }
   }
 }

@@ -2,14 +2,12 @@
   <% if current_user.admin? %>
     <div class="buttons-cont">
       <%= link_to new_admin_bet_path, class: "button-prim" do %>
-        <%= icon('fa-solid', 'plus')%>Create a bet
+        <%= icon('fa-solid', 'plus')%> Create a bet
       <% end %>
     </div>
   <% end %>
 
-  <% grouped_bets = @bets.group_by { |bet| bet.parlay_group || bet.id } %>
-
-  <% grouped_bets.each do |key, bets| %>
+  <% @paginated_groups.each do |bets| %>
     <div class="card">
       <div class="card-body">
         <div class="bet-type-result">
@@ -51,4 +49,6 @@
       <% end %>
     </div>
   <% end %>
+
+  <%= paginate @paginated_groups, params: request.query_parameters %>
 </div>

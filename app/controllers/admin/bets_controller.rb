@@ -5,7 +5,14 @@ module Admin
     before_action :set_bets, only: %i[edit update]
 
     def index
-      @bets = policy_scope(Bet)
+      @grouped_bets = policy_scope(Bet).includes(:match)
+                                       .order(created_at: :desc)
+                                       .group_by { |bet| bet.parlay_group || bet.id }
+                                       .values
+
+      @paginated_groups = Kaminari.paginate_array(@grouped_bets)
+                                  .page(params[:page])
+                                  .per(6)
     end
 
     def new

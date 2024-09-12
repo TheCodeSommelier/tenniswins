@@ -35,7 +35,8 @@ class BetPolicy < ApplicationPolicy
       if user.admin? || user.premium?
         scope.all
       elsif user
-        scope.where('created_at < ?', Time.current.beginning_of_day - 2.days)
+        one_day_ago = Time.current.in_time_zone('UTC').beginning_of_day - 1.day
+        scope.where('created_at < ?', one_day_ago)
       else
         scope.none
       end

@@ -81,3 +81,5 @@ gem 'devise'
 gem 'pundit'
 
 gem 'font-awesome-sass'
+
+gem 'kaminari'

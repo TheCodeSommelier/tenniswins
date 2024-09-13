@@ -2,12 +2,17 @@
 
 module Admin
   class BetsController < ApplicationController
-    before_action :set_bets, only: %i[edit update]
+    before_action :set_bet, only: %i[edit update destroy]
 
     def index
-      # @bets = Bet.where('created_at > ?', Time.current - 2.days)
-      @bets = policy_scope(Bet.all)
-      authorize @bets
+      @grouped_bets = policy_scope(Bet).includes(:match)
+                                       .order(created_at: :desc)
+                                       .group_by { |bet| bet.parlay_group || bet.id }
+                                       .values
+
+      @paginated_groups = Kaminari.paginate_array(@grouped_bets)
+                                  .page(params[:page])
+                                  .per(6)
     end
 
     def new
@@ -24,17 +29,16 @@ module Admin
         bet = Bet.new(bets_params.except(:name))
         bet.parlay_group = parlay_group_id if parlay_group_id
         bet.match = Match.find_by(name: bets_params[:name])
+        authorize bet
         bet
       end
-
-      authorize @bets
 
       if @bets.all?(&:valid?)
         @bets.each(&:save)
         redirect_to admin_bets_path, notice: 'Your pick/parlay is created!'
       else
         flash.now[:notice] = 'Something went wrong!'
-        render :new
+        render :new, status: 422
       end
     end
 
@@ -44,25 +48,18 @@ module Admin
     end
 
     def update
-      # Authorize the bet
       authorize @bet
 
-      # Determine the bets to update
       @bets = @bet.part_of_parlay? ? Bet.where(parlay_group: @bet.parlay_group) : [@bet]
 
-      # Use strong parameters
       permitted_params = bets_params.to_h
 
-      # Initialize success flag
       update_successful = true
 
-      # Iterate over each bet and find matching parameter data by bet_id
       @bets.each do |bet|
-        # Find the corresponding bet_data using the `betId`
         bet_data = permitted_params.values.find { |data| data[:betId].to_i == bet.id }
 
         if bet_data
-          # Perform the update on the bet and its associated match
           unless bet.update(bet_data.except(:name, :betId)) && bet.match.update(name: bet_data[:name])
             update_successful = false
             break
@@ -85,6 +82,25 @@ module Admin
     def matches_autocomplete
       @matches = Match.where('name ILIKE ?', "#{params[:query]}%")
       render json: @matches.pluck(:name)
+    end
+
+    def destroy
+      @bet = Bet.find(params[:id])
+      authorize @bet
+
+      if @bet.part_of_parlay?
+        parlay_group_bets = Bet.where(parlay_group: @bet.parlay_group)
+        parlay_group_bets.destroy_all
+      else
+        @bet.destroy
+      end
+
+      respond_to do |format|
+        format.html { redirect_to admin_bets_path, notice: 'We have successfully deleted the record from the database...' }
+        format.turbo_stream
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_bets_path, alert: 'We could not find the record you are trying to delete...'
     end
 
     def bet_won
@@ -112,7 +128,7 @@ module Admin
 
     private
 
-    def set_bets
+    def set_bet
       @bet = Bet.find(params[:id].to_i)
     end
 

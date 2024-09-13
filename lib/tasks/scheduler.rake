@@ -6,7 +6,7 @@ require 'net/http'
 namespace :matches do
   desc 'Get the match names for today'
   task get_names: :environment do
-    url = URI("https://api.sportradar.com/tennis/trial/v2/en/schedules/#{Date.today.strftime('%Y-%m-%d')}/schedule.json?api_key=#{ENV.fetch('SPORT_RADAR_API_KEY')}")
+    # url = URI("https://api.sportradar.com/tennis/trial/v2/en/schedules/#{Date.today.strftime('%Y-%m-%d')}/schedule.json?api_key=#{ENV.fetch('SPORT_RADAR_API_KEY')}")
 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true

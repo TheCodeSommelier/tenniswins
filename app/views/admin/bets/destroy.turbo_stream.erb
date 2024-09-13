@@ -1,0 +1,7 @@
+<% if @bet.part_of_parlay? %>
+  <% Bet.where(parlay_group: @bet.parlay_group).each do |bet| %>
+    <%= turbo_stream.remove dom_id(bet) %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove dom_id(@bet) %>
+<% end %>

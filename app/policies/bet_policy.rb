@@ -2,7 +2,7 @@
 
 class BetPolicy < ApplicationPolicy
   def index?
-    user&.admin?
+    user
   end
 
   def new?
@@ -21,6 +21,10 @@ class BetPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def destroy?
+    user.admin?
+  end
+
   def bet_won?
     user.admin?
   end
@@ -32,7 +36,14 @@ class BetPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      user.admin? ? scope.all : scope.none
+      if user.admin? || user.premium?
+        scope.all
+      elsif user
+        one_day_ago = Time.current.in_time_zone('UTC').beginning_of_day - 1.day
+        scope.where('created_at < ?', one_day_ago)
+      else
+        scope.none
+      end
     end
   end
 end

@@ -10,11 +10,13 @@ class PagesController < ApplicationController
 
     parlay_money_made = Bet.where(won: true).where.not(parlay_group: nil)
                            .group(:parlay_group)
-                           .sum('100 * (odds - 1)')
+                           .pluck(:parlay_group)
+                           .sum do |group|
+                             total_odds = Bet.where(parlay_group: group).pluck(:odds).reduce(1) { |product, odds| product * odds }
+                             100 * (total_odds - 1)
+                           end
 
-    total_parlay_money = parlay_money_made.values.sum
-
-    @money_made = (single_bet_money_made + total_parlay_money).to_i
+    @money_made = (single_bet_money_made + parlay_money_made).to_i
   end
 
   def membership; end

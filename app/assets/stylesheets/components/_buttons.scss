@@ -17,6 +17,10 @@
     transition: $transition-prim;
     box-shadow: 0 0 10px $primary;
   }
+
+  i {
+    margin-right: 0.5rem;
+  }
 }
 
 .button-prim-outline {

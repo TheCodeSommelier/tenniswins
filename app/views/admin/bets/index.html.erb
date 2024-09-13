@@ -50,7 +50,7 @@
             <%= icon('fa-solid', 'trash') %>
           <% end %>
 
-          <%= link_to edit_admin_bet_path(bets.first.id), class: "button-warning-outline" do %>
+          <%= button_to edit_admin_bet_path(bets.first.id), method: :get, class: "button-warning-outline" do %>
             <%= icon('fa-solid', 'pencil') %>
           <% end %>
 

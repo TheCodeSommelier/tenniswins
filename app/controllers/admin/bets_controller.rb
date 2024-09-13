@@ -2,7 +2,7 @@
 
 module Admin
   class BetsController < ApplicationController
-    before_action :set_bets, only: %i[edit update]
+    before_action :set_bet, only: %i[edit update destroy]
 
     def index
       @grouped_bets = policy_scope(Bet).includes(:match)
@@ -29,17 +29,16 @@ module Admin
         bet = Bet.new(bets_params.except(:name))
         bet.parlay_group = parlay_group_id if parlay_group_id
         bet.match = Match.find_by(name: bets_params[:name])
+        authorize bet
         bet
       end
-
-      authorize @bets
 
       if @bets.all?(&:valid?)
         @bets.each(&:save)
         redirect_to admin_bets_path, notice: 'Your pick/parlay is created!'
       else
         flash.now[:notice] = 'Something went wrong!'
-        render :new
+        render :new, status: 422
       end
     end
 
@@ -85,6 +84,25 @@ module Admin
       render json: @matches.pluck(:name)
     end
 
+    def destroy
+      @bet = Bet.find(params[:id])
+      authorize @bet
+
+      if @bet.part_of_parlay?
+        parlay_group_bets = Bet.where(parlay_group: @bet.parlay_group)
+        parlay_group_bets.destroy_all
+      else
+        @bet.destroy
+      end
+
+      respond_to do |format|
+        format.html { redirect_to admin_bets_path, notice: 'We have successfully deleted the record from the database...' }
+        format.turbo_stream
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to admin_bets_path, alert: 'We could not find the record you are trying to delete...'
+    end
+
     def bet_won
       return unless %w[true false].include?(params[:html_options][:won])
 
@@ -110,7 +128,7 @@ module Admin
 
     private
 
-    def set_bets
+    def set_bet
       @bet = Bet.find(params[:id].to_i)
     end
 

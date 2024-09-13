@@ -21,6 +21,10 @@ class BetPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def destroy?
+    user.admin?
+  end
+
   def bet_won?
     user.admin?
   end

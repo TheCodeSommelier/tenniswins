@@ -15,7 +15,7 @@
     justify-content: space-between;
     position: relative;
 
-    .won, .loss {
+    .won, .loss, .not-decided {
       padding: 5px;
       display: inline-block;
       font-size: 12px;
@@ -29,6 +29,11 @@
     .won {
       background-color: rgba($color: $s-success, $alpha: 0.5);
       border: solid 1px $s-success;
+    }
+
+    .not-decided {
+      background-color: rgba($color: $s-neutral, $alpha: 0.5);
+      border: solid 1px $s-neutral;
     }
   }
 
@@ -69,5 +74,9 @@
     span {
       font-style: italic;
     }
+  }
+
+  i {
+    margin: 0;
   }
 }

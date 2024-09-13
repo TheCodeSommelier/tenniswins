@@ -83,3 +83,5 @@ gem 'pundit'
 gem 'font-awesome-sass'
 
 gem 'kaminari'
+
+gem 'sidekiq'

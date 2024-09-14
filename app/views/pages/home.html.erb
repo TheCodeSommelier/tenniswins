@@ -1,16 +1,19 @@
-<!-- Divide sections -->
-
 <div id="landing-page-c" class="content-c">
 
+  <!-- Main Section -->
   <section id="main">
     <div class="marketing-slinty">
       <h1>Unlock Daily Tennis Picks Backed by <span class="highlight-prim">Expert Research</span> and <span class="highlight-prim">AI Precision</span></h1>
-      <p>Our team of experts and advanced AI deliver carefully curated tennis picks designed for consistent, steady returns. Join TennisWins today and elevate your betting strategy with insights you can trust</p>
+      <p>
+        Our team of experts and advanced AI deliver carefully curated tennis picks designed for consistent, steady returns.
+        Join TennisWins today and elevate your betting strategy with insights you can trust.
+      </p>
       <div class="cta-buttons">
         <%= link_to 'Sign up', new_user_registration_path, class: "button-prim-outline" %>
         <%= link_to 'Picks', admin_bets_path, class: "button-prim" %>
       </div>
     </div>
+
     <div class="picks-display">
       <div class="winning-c">
         <h2 class="title-abs">Won bets</h2>
@@ -24,6 +27,7 @@
     </div>
   </section>
 
+  <!-- How It Works Section -->
   <section id="how-it-works" data-controller="landing-page">
     <h2 class="section-title">How It Works</h2>
     <div class="how-it-works-container">
@@ -33,11 +37,15 @@
         <p class="step" id="step-3" data-action="click->landing-page#changeStep">Step 3 - Receive Daily Picks</p>
       </div>
       <div class="step-desc-container">
-        <p class="step-desc" data-landing-page-target="stepDesc">Sign up with a free account to explore our historical data and gain access to our community channels on Discord/Telegram. See how our picks have performed over time and evaluate the quality of our insights.</p>
+        <p class="step-desc" data-landing-page-target="stepDesc">
+          Sign up with a free account to explore our historical data and gain access to our community channels on Discord/Telegram.
+          See how our picks have performed over time and evaluate the quality of our insights.
+        </p>
       </div>
     </div>
   </section>
 
+  <!-- Why Us Section -->
   <section id="why-us">
     <h2 class="section-title">Why Choose Us?</h2>
     <div class="why-us-grid">
@@ -55,41 +63,69 @@
     </div>
   </section>
 
+  <!-- Pricing Section -->
   <section id="pricing-section">
     <h2 class="section-title">Pricing</h2>
     <div id="pricing">
-      <div class="free p-container">
-        <h2>Free</h2>
-        <ul>
-          <li>Access to Historical Picks and Data</li>
-          <li>Access to Discord / Telegram</li>
-        </ul>
+      <!-- Pricing Plan Unit -->
+      <div class="p-container one-time">
+        <h2>$15 / one time fee</h2>
+        <div class="plan-cont">
+          <ul class="features">
+            <li>Access to Historical Picks and Data</li>
+            <li>Access to Discord / Telegram</li>
+            <li>Access to Daily Picks in Members Section for that day</li>
+          </ul>
+          <%= button_to 'Pick me!', root_path, class: "button-prim-outline" %>
+        </div>
       </div>
 
-      <div class="paid p-container">
+      <div class="p-container monthly" id="monthly">
         <h2>$99 / monthly</h2>
-        <ul>
-          <li>Access to Historical Picks and Data</li>
-          <li>Access to Discord / Telegram</li>
-          <li>Access to Daily Picks in Members Section</li>
-          <li>Every Pick Emailed to You</li>
-        </ul>
+        <div class="plan-cont">
+          <ul class="features">
+            <li>Access to Historical Picks and Data</li>
+            <li>Access to Discord / Telegram</li>
+            <li>Access to Daily Picks in Members Section</li>
+            <li>Every Pick Emailed to You</li>
+          </ul>
+          <%= button_to 'Pick me!', root_path, class: "button-prim-outline" %>
+        </div>
       </div>
-    </div>
 
-    <%= link_to 'Sign up', new_user_registration_path, class: "button-prim" %>
+      <div class="p-container one-time">
+        <h2>$40 / one time fee</h2>
+        <div class="plan-cont">
+          <ul class="features">
+            <li>Access to Historical Picks and Data</li>
+            <li>Access to Discord / Telegram</li>
+            <li>Access to Daily Picks in Members Section for a week</li>
+          </ul>
+          <%= button_to 'Pick me!', root_path, class: "button-prim-outline" %>
+        </div>
+      </div>
+
+      <!--<div class="p-container free">
+        <h2>Free</h2>
+        <div class="plan-cont">
+          <ul class="features">
+            <li>Access to Historical Picks and Data</li>
+            <li>Access to Discord / Telegram</li>
+          </ul>
+          <%#= button_to 'Sign up', root_path, class: "button-prim-outline" %>
+        </div>
+      </div>-->
+    </div>
   </section>
 
+  <!-- Success Stories Section -->
   <section id="success-stories">
     <h2 class="section-title">Success Stories</h2>
     <p class="subtitle">Below are some nice messages some of our team have received.</p>
     <div class="messages-grid">
-      <div class="message-placeholder"></div>
-      <div class="message-placeholder"></div>
-      <div class="message-placeholder"></div>
-      <div class="message-placeholder"></div>
-      <div class="message-placeholder"></div>
-      <div class="message-placeholder"></div>
+      <% 6.times do %>
+        <div class="message-placeholder"></div>
+      <% end %>
     </div>
     <%= link_to 'Sign up', new_user_registration_path, class: "button-prim button-prim-success-sec" %>
   </section>

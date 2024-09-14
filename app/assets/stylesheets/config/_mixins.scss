@@ -1,0 +1,24 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-font($min-size, $max-size) {
+  $min-size-px: if(unit($min-size) == 'px', $min-size, $min-size * 16px);
+  $max-size-px: if(unit($max-size) == 'px', $max-size, $max-size * 16px);
+
+  font-size: $min-size-px;
+
+  @media screen and (min-width: 320px) {
+    font-size: calc(#{$min-size-px} + #{strip-unit($max-size-px - $min-size-px)} * ((100vw - 320px) / (1200 - 320)));
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: $max-size-px;
+  }
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}

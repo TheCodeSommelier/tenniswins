@@ -1,171 +1,145 @@
+$pricing-min-width: 250px;
+$pricing-max-width: 300px;
+
+// Main styles
 #landing-page-c {
+  .content-c {
+    max-width: $content-max-width;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
   section {
     margin-top: 7rem;
   }
 
   .section-title {
     text-align: center;
+    @include responsive-font($font-size-xl-min, $font-size-xl-max);
+    margin-bottom: 2rem;
   }
 
   // Main section
   #main {
     display: flex;
-    justify-content: center;
-    align-items: start;
-  }
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
 
-  .marketing-slinty {
-    width: calc(50% - 10px);
-
-    h1 {
-      margin-bottom: 1rem;
-      font-size: 2.8rem;
+    @media (max-width: 768px) {
+      flex-direction: column;
     }
 
-    p {
-      margin: 1.7rem auto;
-      line-height: 1.7rem;
-      font-size: 1.2rem;
-    }
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 20px;
-  }
-
-  .base-calculation-p {
-    font-style: italic;
-    color: lightgrey;
-  }
-
-  .picks-display {
-    display: flex;
-    align-items: end;
-    justify-content: start;
-    flex-direction: column;
-    width: calc(50% - 10px);
-    gap: 30px;
-  }
-
-  .winning-c,
-  .amount-made-c {
-    position: relative;
-    width: 75%;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: $bg-prim-gradient;
-    padding: 2rem;
-
-    h2 {
-      color: $bg-color;
+    .marketing-slinty, .picks-display {
+      flex: 1;
     }
 
-    .winning,
-    .amount-made {
-      font-size: 4rem;
-      margin-top: 1rem;
-      color: $bg-color;
-    }
-  }
+    .marketing-slinty {
+      h1 {
+        @include responsive-font($font-size-xxl-min, $font-size-xxl-max);
+        margin-bottom: 1rem;
+      }
 
-  .title-abs {
-    font-size: 1.4rem;
+      p {
+        @include responsive-font($font-size-sm-min, $font-size-sm-max);
+        line-height: 1.7;
+        margin: 1.7rem 0;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+    }
+
+    .picks-display {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: flex-end;
+
+      .winning-c, .amount-made-c {
+        width: 75%;
+        height: 150px;
+        @include flex-center;
+        flex-direction: column;
+        background: $bg-prim-gradient;
+        padding: 2rem;
+        border-radius: 8px;
+
+        h2 {
+          color: $bg-color;
+        }
+
+        .winning, .amount-made {
+          @include responsive-font($font-size-huge-min, $font-size-huge-max);
+          margin-top: 1rem;
+          color: $bg-color;
+        }
+      }
+
+      .base-calculation-p {
+        font-style: italic;
+        color: lightgrey;
+        font-size: $font-size-xs-min;
+      }
+    }
   }
 
   // How it works section
-  .how-it-works-container {
-    border: 2px solid $primary;
-    padding: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  #how-it-works {
+    .how-it-works-container {
+      display: flex;
+      border: 2px solid $primary-color;
+      padding: 3rem;
 
-    .active {
-      border-bottom: solid 2px $primary;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+
+    .steps-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid lightgrey;
+      padding: 0.3rem;
+
+      @media (max-width: 768px) {
+        border-right: none;
+        border-bottom: 1px solid lightgrey;
+        margin-bottom: 1rem;
+      }
+
+      .step {
+        margin: 1rem;
+        @include responsive-font($font-size-md-min, $font-size-md-max);
+        padding-bottom: 1rem;
+        cursor: pointer;
+        border-bottom: solid 2px transparent;
+        transition: $transition-prim;
+
+        &:hover, &.active {
+          border-bottom: solid 2px $primary-color;
+        }
+      }
+    }
+
+    .step-desc-container {
+      flex: 1;
+      padding: 1.5rem;
+
+      .step-desc {
+        @include responsive-font($font-size-sm-min, $font-size-sm-max);
+        line-height: 1.7;
+        transition: opacity 0.3s ease-in-out;
+
+        &.fade-out { opacity: 0; }
+        &.fade-in { opacity: 1; }
+      }
     }
   }
-
-  .steps-container {
-    min-height: 10rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    border-right: 1px solid lightgrey;
-    padding: 0.3rem;
-  }
-
-  .step {
-    margin: 1rem;
-    font-size: 1.4rem;
-    padding-bottom: 1rem;
-    width: fit-content;
-    max-width: 100%;
-    cursor: pointer;
-    border-bottom: solid 2px transparent;
-    transition: $transition-prim;
-
-    &:hover {
-      border-bottom: solid 2px $primary;
-      transition: $transition-prim;
-    }
-  }
-
-  .step-desc-container {
-    width: 50%;
-  }
-
-  .step-desc {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-    transition: opacity 0.3s ease-in-out;
-    padding: 1.5rem;
-  }
-
-  .step-desc.fade-out {
-    opacity: 0;
-  }
-
-  .step-desc.fade-in {
-    opacity: 1;
-  }
-
-  // Success stories
-  .button-prim-success-sec {
-    width: 50%;
-    margin: 1rem auto;
-  }
-
-  .subtitle {
-    padding: 1rem;
-    margin-bottom: 20px;
-    border-bottom: 2px solid $primary;
-  }
-
-  .messages-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .message-placeholder {
-    width: 100%;
-    height: 150px;
-    background-color: lightgray;
-    transition: $transition-prim;
-    position: relative;
-
-    &:hover {
-      transform: scale(1.05);
-      z-index: 2;
-      transition: $transition-prim;
-    }
-  }
-
 
   // Why us section
   .why-us-grid {
@@ -179,74 +153,132 @@
     h3 {
       font-size: 1.4rem;
       padding-right: 15px;
-      border-right: 2px solid $primary;
+      border-right: 2px solid $primary-color;
       width: 100%;
       font-weight: 400;
     }
+
+    .w-u-item {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+    }
   }
 
-  .w-u-item {
-    display: flex;
-    align-items: center;
-    justify-content: right;
-  }
-
-  // Pricing
+  // Pricing section
   #pricing-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+    #pricing {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
-    .button-prim {
-      margin-top: 1rem;
-      width: 25%;
+    .p-container {
+      flex: 1;
+      min-width: $pricing-min-width;
+      max-width: $pricing-max-width;
+      padding: 1rem;
+      border: 2px solid $primary-color;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+
+      &#monthly {
+        background: $bg-prim-gradient;
+
+        h2 {
+          color: $font-dark;
+        }
+
+        ul li {
+          color: $font-dark;
+          &::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: $font-dark;
+          }
+        }
+      }
+
+      h2 {
+        @include responsive-font($font-size-lg-min, $font-size-lg-max);
+        margin: 1rem 0;
+      }
+
+      .plan-cont {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+
+        ul {
+          list-style-type: none;
+          padding-left: 0;
+
+          li {
+            @include responsive-font($font-size-sm-min, $font-size-sm-max);
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+
+            &::before {
+              content: '✓';
+              position: absolute;
+              left: 0;
+              color: $primary-color;
+            }
+          }
+        }
+
+        form, button {
+          width: 100%;
+          margin-top: 1rem;
+        }
+      }
     }
   }
 
-  #pricing {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .p-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 35%;
-    padding: 1rem;
-  }
-
-  .free {
-    border-left: 2px solid $primary;
-    border-top: 2px solid $primary;
-    border-bottom: 2px solid $primary;
-    height: 280px;
-  }
-
-  .paid {
-    background: $bg-prim-gradient;
-    height: 300px;
-
-    h2,
-    li {
-      color: $bg-color;
+  // Success stories section
+  #success-stories {
+    .subtitle {
+      padding: 1rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid $primary-color;
+      text-align: center;
+      @include responsive-font($font-size-md-min, $font-size-md-max);
     }
-  }
 
-  h2 {
-    font-size: 2rem;
-    margin: 0 auto 1.5rem;
-  }
+    .messages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax($grid-item-min-width, 1fr));
+      gap: 20px;
+      margin-bottom: 2rem;
 
-  li {
-    font-size: 1.2rem;
-    padding-right: 0.2rem;
-    margin-left: 1.5rem;
-    width: 90%;
+      .message-placeholder {
+        aspect-ratio: 1 / 1;
+        background-color: lightgray;
+        transition: $transition-prim;
+        position: relative;
+
+        &:hover {
+          transform: scale(1.05);
+          z-index: 2;
+        }
+      }
+    }
+
+    .button-prim-success-sec {
+      display: block;
+      width: 50%;
+      margin: 1rem auto;
+      text-align: center;
+      @include responsive-font($font-size-sm-min, $font-size-sm-max);
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
   }
 }

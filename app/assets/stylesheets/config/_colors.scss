@@ -2,11 +2,10 @@
 $bg-color: #060701;
 $font-light: #f7f8f1;
 $font-dark: #22231c;
-$transition-prim: 0.3s ease-in;
 
 // Primary
-$primary: #C1E021;
-$bg-prim-gradient: linear-gradient(45deg, $primary, #dfff3f 80%);
+$primary-color: #C1E021;
+$bg-prim-gradient: linear-gradient(45deg, $primary-color, #dfff3f 80%);
 
 // System
 $s-success: #47f95e;

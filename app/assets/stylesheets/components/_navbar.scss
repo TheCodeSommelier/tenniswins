@@ -27,8 +27,8 @@
   }
 
   .nav-link:hover, .active {
-    color: $primary;
-    border-bottom: 2px solid $primary;
+    color: $primary-color;
+    border-bottom: 2px solid $primary-color;
     transition: $transition-prim;
   }
 }

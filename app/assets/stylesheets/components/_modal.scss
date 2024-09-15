@@ -1,0 +1,36 @@
+#modal {
+  background-color: rgba($color: $bg-color, $alpha: 0.8);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+
+  form {
+    @include flex-center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  label {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 25%;
+  }
+
+  input[type="submit"] {
+    width: 25%;
+  }
+
+  button {
+    font-size: 1.5rem;
+  }
+}

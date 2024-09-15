@@ -22,5 +22,6 @@ Rails.application.routes.draw do
     post 'bets/:id/matches_autocomplete', to: 'bets#matches_autocomplete'
     patch 'bet_won', to: 'bets#bet_won', as: :bet_won
     post 'bets/:id/edit-bet-data', to: 'bets#edit_bet_data'
+    post 'bets/send-daily-picks', to: 'bets#send_daily_picks'
   end
 end

@@ -14,6 +14,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    border-radius: 8px;
 
     .won, .loss, .not-decided {
       padding: 5px;
@@ -76,7 +77,7 @@
     }
   }
 
-  button {
+  .card-button {
     i {
       margin: 0;
     }

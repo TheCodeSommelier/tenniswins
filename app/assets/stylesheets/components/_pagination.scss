@@ -4,9 +4,7 @@
   align-items: center;
 
   span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
   }
 
   .page a, .next a, .last a, .prev a, .first a {

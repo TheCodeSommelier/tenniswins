@@ -126,6 +126,10 @@ module Admin
       render json: { bets: @bets, matches: @matches }
     end
 
+    def send_daily_picks
+      BetsMailer.send_picks(params[:bets][:date]).deliver_later
+    end
+
     private
 
     def set_bet

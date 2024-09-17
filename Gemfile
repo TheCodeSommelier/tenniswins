@@ -85,3 +85,7 @@ gem 'font-awesome-sass'
 gem 'kaminari'
 
 gem 'sidekiq'
+
+gem 'postmark-rails'
+
+gem 'premailer-rails'

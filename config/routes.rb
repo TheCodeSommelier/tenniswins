@@ -23,4 +23,8 @@ Rails.application.routes.draw do
     patch 'bet_won', to: 'bets#bet_won', as: :bet_won
     post 'bets/:id/edit-bet-data', to: 'bets#edit_bet_data'
   end
+
+  namespace :stripe do
+    get 'checkout', to: 'checkout#new'
+  end
 end

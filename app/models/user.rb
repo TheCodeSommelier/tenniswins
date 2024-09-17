@@ -6,5 +6,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :create_stripe_customer
+
   validates :first_name, :last_name, presence: true
+
+  private
+
+  def create_stripe_customer
+    customer = Stripe::Customer.create(
+      email:,
+      name: company_name
+    )
+    update(stripe_customer_id: customer.id)
+  end
 end

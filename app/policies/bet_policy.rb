@@ -33,17 +33,18 @@ class BetPolicy < ApplicationPolicy
     true
   end
 
+  def view_data?
+    user.admin? || user.premium? || user.credits.positive?
+  end
+
+  def data_should_be_blurred?(bet)
+    bet.created_at >= 1.day.ago
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      if user.admin? || user.premium?
-        scope.all
-      elsif user
-        one_day_ago = Time.current.in_time_zone('UTC').beginning_of_day - 1.day
-        scope.where('created_at < ?', one_day_ago)
-      else
-        scope.none
-      end
+      scope.all
     end
   end
 end

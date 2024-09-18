@@ -49,10 +49,6 @@
 
 <h1>Your daily dose of winning arrived!</h1>
 
-<%= link_to 'Check out the dash', admin_bets_url, class: "button-prim" %>
-
 <h2>⬇️⬇️⬇️⬇️ PICKS AND PARLAYS ⬇️⬇️⬇️⬇️</h2>
 
-<% @bets.each do |bets| %>
-  <%= render 'shared/pick_and_parlay_card', bets:, mailer: true %>
-<% end %>
+<%= link_to 'Check out the dash', admin_bets_url, class: "button-prim" %>

@@ -21,7 +21,7 @@
 
       <div class="matches-grid">
         <% bets.each do |bet| %>
-          <div class="match-column" id="<%= dom_id(bet) %>">
+          <div class="match-column">
             <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
             <% if policy(bet).view_data? || !policy(bet).data_should_be_visible?(bet) %>
               <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>

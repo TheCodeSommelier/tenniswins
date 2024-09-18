@@ -8,57 +8,7 @@
   <% end %>
 
   <% @paginated_groups.each do |bets| %>
-    <div class="card">
-      <div class="card-body">
-        <div class="bet-type-result">
-          <% if bets.first.parlay_group %>
-            <h3>Parlay</h3>
-          <% else %>
-            <h3>Pick</h3>
-          <% end %>
-
-          <% if bets.first.won? %>
-            <p class="won">W</p>
-          <% elsif bets.first.won.nil? %>
-            <p class="not-decided">No result yet</p>
-          <% else %>
-            <p class="loss">L</p>
-          <% end %>
-        </div>
-        <div class="matches-grid">
-          <% bets.each do |bet| %>
-            <div class="match-column" id="<%= dom_id(bet) %>">
-              <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
-              <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
-              <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
-            </div>
-          <% end %>
-        </div>
-
-        <% if bets.first.parlay_group %>
-          <div>
-            <p class="total-odds">
-              <strong>Total Odds:</strong> <%= calculate_total_odds(bets) %>
-            </p>
-          </div>
-        <% end %>
-      </div>
-
-      <% if current_user.admin? %>
-        <div class="buttons-cont">
-          <%= button_to admin_bet_path(bets.first.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button-danger-outline" do %>
-            <%= icon('fa-solid', 'trash') %>
-          <% end %>
-
-          <%= button_to edit_admin_bet_path(bets.first.id), method: :get, class: "button-warning-outline" do %>
-            <%= icon('fa-solid', 'pencil') %>
-          <% end %>
-
-          <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline" %>
-          <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline" %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'shared/pick_and_parlay_card', bets:, mailer: false %>
   <% end %>
 
   <%= paginate @paginated_groups, params: request.query_parameters %>

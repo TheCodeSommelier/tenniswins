@@ -14,6 +14,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    border-radius: 8px;
 
     .won, .loss, .not-decided {
       padding: 5px;
@@ -37,8 +38,39 @@
     }
   }
 
+  .cover {
+    position: absolute;
+    @include flex-center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: rgba($color: $bg-color, $alpha: 0.25);
+    z-index: 1;
+    border-radius: 7px;
+
+    a {
+      width: 50%;
+    }
+
+    i {
+      color: $primary-color;
+      margin-bottom: 1rem;
+      font-size: 3rem;
+    }
+  }
+
   .card-body, .total-odds, .card-match-name {
     margin-top: 0.5rem;
+  }
+
+  .card-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 
   .card-match-name {
@@ -76,7 +108,7 @@
     }
   }
 
-  button {
+  .card-button {
     i {
       margin: 0;
     }

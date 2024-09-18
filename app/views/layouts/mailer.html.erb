@@ -3,11 +3,72 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
-      /* Email styles need to be inline */
+      html, body {
+        background-color: #060701;
+        margin: 0;
+        scroll-behavior: smooth;
+        padding: 3rem 1rem;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        color: #f7f8f1;
+      }
+
+      p, li, a, ul, ol, label, em, span {
+        font-family: 'Helvetica', sans-serif;
+        color: #f7f8f1;
+        margin: 0;
+        padding: 0;
+      }
+
+      label {
+        margin: 1rem 0 0.3rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .button-prim {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #060701;
+        font-size: 1rem;
+        padding: 1rem;
+        background-color: #C1E021;
+        font-weight: 700;
+        cursor: pointer;
+        height: fit-content;
+      }
+
+      .highlight-prim {
+        color: #C1E021;
+      }
     </style>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <img src="<%= image_url('logo_white.png') %>" alt="Logo" width="200">
+    </header>
+
+    <div class="content">
+      <%= yield %>
+      <br />
+      <br />
+      <p>Stay best,</p>
+      <p>Tenniswins team</p>
+    </div>
+
+    <br />
+
+    <footer class="confidentiality">
+      <p>
+        This email and any attached files are confidential and intended solely for the recipient. If you have received this email in error, please inform the sender and delete it immediately. Please do not forward this email, as it may contain sensitive information.
+      </p>
+    </footer>
   </body>
 </html>

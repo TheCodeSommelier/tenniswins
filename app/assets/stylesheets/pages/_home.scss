@@ -93,6 +93,7 @@ $pricing-max-width: 300px;
       display: flex;
       border: 2px solid $primary-color;
       padding: 3rem;
+      border-radius: 8px;
 
       @media (max-width: 768px) {
         flex-direction: column;

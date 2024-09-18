@@ -1,0 +1,54 @@
+<style>
+  .card {
+    margin-top: 1rem;
+    padding: 12px;
+    border: solid 2px #C1E021;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-radius: 8px;
+  }
+
+  .card-body, .total-odds, .card-match-name {
+    margin-top: 0.5rem;
+  }
+
+  .card-match-name {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .matches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+
+  .separator {
+    margin: 0 1rem;
+  }
+
+  .bet-date-mar {
+    margin: 0.5rem 0;
+
+    span {
+      font-style: italic;
+    }
+  }
+
+  .card-button {
+    i {
+      margin: 0;
+    }
+  }
+
+  .button-prim {
+    margin: 1rem 0;
+  }
+</style>
+
+<h1>Your daily dose of winning arrived!</h1>
+
+<h2>⬇️⬇️⬇️⬇️ PICKS AND PARLAYS ⬇️⬇️⬇️⬇️</h2>
+
+<%= link_to 'Check out the dash', admin_bets_url, class: "button-prim" %>

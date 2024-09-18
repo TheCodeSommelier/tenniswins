@@ -1,8 +1,6 @@
 // Primary button
 .button-prim {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   color: $bg-color;
   font-size: 1rem;
   padding: 1rem;
@@ -10,23 +8,29 @@
   transition: $transition-prim;
   font-weight: 700;
   cursor: pointer;
+  height: fit-content;
+
+  i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
 
   &:hover {
     background-color: #dfff3f;
     color: $font-dark;
     transition: $transition-prim;
     box-shadow: 0 0 10px $primary-color;
+
+    i {
+      transform: rotate(360deg);
+      transition: transform 0.3s ease;
+    }
   }
 
-  i {
-    margin-right: 0.5rem;
-  }
 }
 
 .button-prim-outline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   color: $primary-color;
   font-size: 1rem;
   border: 2px solid $primary-color;
@@ -36,11 +40,21 @@
   cursor: pointer;
   background-color: $bg-color;
 
+  i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
     border: 2px solid $primary-color;
     color: $bg-color;
     background-color: $primary-color;
     transition: $transition-prim;
+
+    i {
+      transform: rotate(360deg);
+      transition: transform 0.3s ease;
+    }
   }
 }
 
@@ -53,10 +67,20 @@
   color: $s-danger;
   cursor: pointer;
 
+  i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
     background-color: $s-danger;
     color: $font-light;
     transition: 0.3s ease-in;
+
+    i {
+      transform: rotate(360deg);
+      transition: transform 0.3s ease;
+    }
   }
 }
 
@@ -68,10 +92,20 @@
   transition: 0.3s ease-in;
   cursor: pointer;
 
+  i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
     background-color: $s-success;
     color: $font-dark;
     transition: 0.3s ease-in;
+
+    i {
+      transform: rotate(360deg);
+      transition: transform 0.3s ease;
+    }
   }
 }
 
@@ -83,9 +117,19 @@
   transition: 0.3s ease-in;
   cursor: pointer;
 
+  i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
     background-color: $s-warning;
     color: $font-dark;
     transition: 0.3s ease-in;
+
+    i {
+      transform: rotate(360deg);
+      transition: transform 0.3s ease;
+    }
   }
 }

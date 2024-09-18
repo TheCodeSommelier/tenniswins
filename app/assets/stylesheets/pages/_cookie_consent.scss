@@ -1,7 +1,5 @@
 #cookie-consent-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   height: 75vh;
 }
 

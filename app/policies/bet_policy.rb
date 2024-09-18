@@ -37,7 +37,7 @@ class BetPolicy < ApplicationPolicy
     user.admin? || user.premium? || user.credits.positive?
   end
 
-  def data_should_be_blurred?(bet)
+  def data_should_be_visible?(bet)
     bet.created_at >= 1.day.ago
   end
 

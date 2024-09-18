@@ -23,7 +23,7 @@
         <% bets.each do |bet| %>
           <div class="match-column" id="<%= dom_id(bet) %>">
             <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
-            <% if policy(bet).view_data? || !policy(bet).data_should_be_blurred?(bet) %>
+            <% if policy(bet).view_data? || !policy(bet).data_should_be_visible?(bet) %>
               <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
               <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
             <% else %>
@@ -37,7 +37,7 @@
       <% if bets.first.parlay_group %>
         <div>
           <p class="total-odds">
-            <% if policy(bets.first).view_data? || !policy(bets.first).data_should_be_blurred?(bets.first) %>
+            <% if policy(bets.first).view_data? || !policy(bets.first).data_should_be_visible?(bets.first) %>
               <strong>Total Odds:</strong> <%= calculate_total_odds(bets) %>
             <% else %>
               <strong>Total Odds:</strong> Content hidden
@@ -64,7 +64,7 @@
   </div>
 
   <!-- Overlay for blurred content and lock icon -->
-  <% if !policy(bets.first).view_data? && policy(bets.first).data_should_be_blurred?(bets.first) %>
+  <% if !policy(bets.first).view_data? && policy(bets.first).data_should_be_visible?(bets.first) %>
     <div class="cover">
       <%= icon("fa-solid", "lock") %>
       <%= link_to 'Unlock current picks', root_path(anchor: 'pricing-section'), class: "button-prim" %>

@@ -35,6 +35,9 @@ module Admin
 
       if @bets.all?(&:valid?)
         @bets.each(&:save)
+        bets_ids = @bets.map(&:id)
+        BetsMailer.send_picks(bets_ids).deliver_later
+
         redirect_to admin_bets_path, notice: 'Your pick/parlay is created!'
       else
         flash.now[:notice] = 'Something went wrong!'
@@ -127,7 +130,6 @@ module Admin
     end
 
     def send_daily_picks
-      BetsMailer.send_picks(params[:bets][:date]).deliver_later
     end
 
     private

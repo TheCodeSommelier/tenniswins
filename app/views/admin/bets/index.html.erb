@@ -1,11 +1,8 @@
 <div id="dashboard-cont">
   <% if current_user.admin? %>
-    <div class="buttons-cont" data-controller="modal">
+    <div class="buttons-cont">
       <%= link_to new_admin_bet_path, class: "button-prim" do %>
         <%= icon('fa-solid', 'plus') %> Create a bet
-      <% end %>
-      <%= button_tag class: "button-prim-outline", data: { action: "click->modal#showModal"} do %>
-        <%= icon("fa-solid", "envelope") %> Send picks
       <% end %>
     </div>
   <% end %>

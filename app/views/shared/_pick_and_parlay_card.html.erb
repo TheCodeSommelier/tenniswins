@@ -7,17 +7,19 @@
         <h3>Pick</h3>
       <% end %>
 
-      <% if bets.first.won? %>
-        <p class="won">W</p>
-      <% elsif bets.first.won.nil? %>
-        <p class="not-decided">No result yet</p>
-      <% else %>
-        <p class="loss">L</p>
+      <% if !mailer %>
+        <% if bets.first.won? %>
+          <p class="won">W</p>
+        <% elsif bets.first.won.nil? %>
+          <p class="not-decided">No result yet</p>
+        <% else %>
+          <p class="loss">L</p>
+        <% end %>
       <% end %>
     </div>
     <div class="matches-grid">
       <% bets.each do |bet| %>
-        <div class="match-column" id="<%= dom_id(bet) %>">
+        <div class="match-column" id="<%= dom_id(bet) if !mailer %>">
           <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
           <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
           <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
@@ -34,7 +36,7 @@
     <% end %>
   </div>
 
-  <% if current_user.admin? && !mailer %>
+  <% if !mailer && current_user.admin? %>
     <div class="buttons-cont">
       <%= button_to admin_bet_path(bets.first.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button-danger-outline card-button" do %>
         <%= icon('fa-solid', 'trash') %>

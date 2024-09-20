@@ -74,7 +74,9 @@ module Admin
       if update_successful
         redirect_to admin_bets_path, notice: 'Bets were successfully updated.'
       else
-        flash.now[:alert] = "Update failed. Errors: #{@bets.flat_map { |bet| bet.errors.full_messages }.uniq.join(', ')}"
+        flash.now[:alert] = "Update failed. Errors: #{@bets.flat_map do |bet|
+                                                        bet.errors.full_messages
+                                                      end.uniq.join(', ')}"
         render :edit, status: :unprocessable_entity
       end
     end
@@ -96,7 +98,9 @@ module Admin
       end
 
       respond_to do |format|
-        format.html { redirect_to admin_bets_path, notice: 'We have successfully deleted the record from the database...' }
+        format.html do
+          redirect_to admin_bets_path, notice: 'We have successfully deleted the record from the database...'
+        end
         format.turbo_stream
       end
     rescue ActiveRecord::RecordNotFound

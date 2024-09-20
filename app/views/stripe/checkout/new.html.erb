@@ -1,0 +1,7 @@
+<div class="checkout-cont" data-controller="stripe" data-public-key="<%= ENV.fetch('STRIPE_PUBLIC_TEST_KEY') %>">
+  <div>
+    <h1>Price <span class="highlight-prim" data-stripe-target="priceSpan"></span><span data-stripe-target="monthlySpan"></span></h1>
+    <div id="payment-element"></div>
+    <p class="security-message"><span class="highlight-prim">#</span> All payments are processed by Stripe and secured via HTTPS protocol.</p>
+  </div>
+</div>

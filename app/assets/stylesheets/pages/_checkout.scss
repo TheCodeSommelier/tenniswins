@@ -1,0 +1,15 @@
+.checkout-cont {
+  @include flex-center;
+  flex-direction: column;
+
+  #payment-element {
+    margin-top: 1rem;
+  }
+
+  .security-message {
+    font-style: italic;
+    color: rgb(153, 153, 153);
+    text-align: left;
+    margin-top: 1rem;
+  }
+}

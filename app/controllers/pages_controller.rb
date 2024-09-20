@@ -12,7 +12,9 @@ class PagesController < ApplicationController
                            .group(:parlay_group)
                            .pluck(:parlay_group)
                            .sum do |group|
-                             total_odds = Bet.where(parlay_group: group).pluck(:odds).reduce(1) { |product, odds| product * odds }
+                             total_odds = Bet.where(parlay_group: group).pluck(:odds).reduce(1) do |product, odds|
+                               product * odds
+                             end
                              100 * (total_odds - 1)
                            end
 

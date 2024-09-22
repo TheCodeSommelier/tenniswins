@@ -72,20 +72,25 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'dotenv'
+gem 'dotenv' # 3.1.2
 
-gem 'ngrok'
+gem 'ngrok' # 1.6.1
 
-gem 'devise'
+gem 'devise' # 4.9.4
 
-gem 'pundit'
+gem 'pundit' # 2.4.0
 
-gem 'font-awesome-sass'
+gem 'font-awesome-sass' # 6.5.2
 
-gem 'kaminari'
+gem 'kaminari' # 1.2.2
+
+gem 'sidekiq' # 7.3.2
+
+gem 'stripe' # 11.7.0
 
 gem 'sidekiq'
 
 gem 'postmark-rails'
 
 gem 'premailer-rails'
+

@@ -24,4 +24,12 @@ Rails.application.routes.draw do
     post 'bets/:id/edit-bet-data', to: 'bets#edit_bet_data'
     post 'bets/send-daily-picks', to: 'bets#send_daily_picks'
   end
+
+  namespace :stripe do
+    get 'checkout', to: 'checkout#new'
+    post 'get-client-secret', to: 'checkout#send_client_secret'
+    get 'success', to: 'checkout#success'
+    post 'subscribe-customer', to: 'checkout#create_subscription'
+    post 'webhook', to: 'webhook#handle_webhook'
+  end
 end

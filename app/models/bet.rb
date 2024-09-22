@@ -2,6 +2,8 @@
 
 class Bet < ApplicationRecord
   belongs_to :match
+  has_many :user_bets
+  has_many :users, through: :user_bets
 
   validates :odds, :us_odds, presence: true
 

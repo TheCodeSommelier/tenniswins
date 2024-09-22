@@ -29,4 +29,48 @@
     border-bottom: 2px solid $primary-color;
     transition: $transition-prim;
   }
+
+  .account {
+    position: relative;
+    margin-left: 50px;
+  }
+
+  .user {
+    width: 50px;
+    height: 50px;
+    color: $primary-color;
+    @include flex-center;
+    flex-direction: column;
+    border-radius: 100%;
+    font-size: 2rem;
+    border: solid 2px $primary-color;
+    cursor: pointer;
+  }
+
+
+  #user-menu {
+    position: absolute;
+    right: 1.5rem;
+    border: 2px solid $primary-color;
+    flex-direction: column;
+    width: 200px;
+    background-color: $bg-color;
+    z-index: 10;
+  }
+
+  #user-menu .user-menu-item {
+    @include menu-item;
+  }
+
+  .credits, .credits-nav {
+    list-style-type: none;
+  }
+
+  .credits-nav {
+    font-size: 1.5rem;
+  }
+
+  .credits {
+    padding: 1rem;
+  }
 }

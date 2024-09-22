@@ -6,9 +6,7 @@
     <%= link_to 'Home', root_path, class: "nav-link" %>
     <%= link_to 'How it works', root_path(anchor: 'how-it-works'), class: "nav-link" %>
 
-    <% if user_signed_in? %>
-      <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "button-prim-outline" %>
-    <% else %>
+    <% unless user_signed_in? %>
       <%= link_to "Sign up", new_user_registration_path, class: "button-prim-outline" %>
     <% end %>
 
@@ -16,6 +14,26 @@
       <%= link_to "Picks", admin_bets_path, class: "button-prim" %>
     <% else %>
       <%= link_to 'Sign in', new_user_session_path, class: "button-prim" %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <div class="account" data-controller="user" data-action="click->user#toggleMenu">
+        <div class="user">
+          <%= icon('fa-solid', 'user') %>
+        </div>
+        <div id="user-menu" style="display: none;" data-user-target="userMenu" data-active="false">
+          <ul>
+            <li class="user-menu-item"><%= link_to 'Edit account', edit_user_registration_path(current_user) %></li>
+            <li class="user-menu-item"><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %></li>
+            <% unless current_user.premium %>
+              <li class="credits"><%= icon('fa-solid', 'coins') %> Credits: <span class="highlight-prim"><%= current_user.credits %></span></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <% if user_signed_in? && !current_user.premium %>
+      <li class="credits-nav"><%= icon('fa-solid', 'coins') %> <span class="highlight-prim"><%= current_user.credits %></span></li>
     <% end %>
   </div>
 </div>

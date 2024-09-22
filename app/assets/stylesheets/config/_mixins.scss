@@ -19,6 +19,29 @@
   }
 }
 
+@mixin menu-item {
+  list-style-type: none;
+  text-decoration: none;
+  transition: $transition-prim;
+  padding: 1rem;
+  cursor: pointer;
+
+  a {
+    transition: $transition-prim;
+  }
+
+  &:hover {
+    background-color: $primary-color;
+    transition: $transition-prim;
+    color: $font-dark;
+
+    a {
+      color: $font-dark;
+      transition: $transition-prim;
+    }
+  }
+}
+
 @function strip-unit($value) {
   @return $value / ($value * 0 + 1);
 }

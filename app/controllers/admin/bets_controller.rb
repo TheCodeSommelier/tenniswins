@@ -142,7 +142,7 @@ module Admin
         else
           current_user.user_bets.create(bet:)
         end
-        redirect_to admin_bets_path, notice: 'Bet unlocked!'
+        redirect_to admin_bets_path, notice: "Bet unlocked! Your current credit balance is => #{current_user.credits} credits"
       else
         redirect_to admin_bets_path, alert: "You don't have enough credits..."
       end

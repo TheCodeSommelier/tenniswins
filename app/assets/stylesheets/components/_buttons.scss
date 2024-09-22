@@ -26,7 +26,6 @@
       transition: transform 0.3s ease;
     }
   }
-
 }
 
 .button-prim-outline {
@@ -39,6 +38,7 @@
   font-weight: 700;
   cursor: pointer;
   background-color: $bg-color;
+  height: fit-content;
 
   i {
     margin-right: 0.5rem;

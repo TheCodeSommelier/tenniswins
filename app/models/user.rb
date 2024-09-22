@@ -14,8 +14,7 @@ class User < ApplicationRecord
 
   def create_stripe_customer
     customer = Stripe::Customer.create(
-      email:,
-      name: company_name
+      email:
     )
     update(stripe_customer_id: customer.id)
   end

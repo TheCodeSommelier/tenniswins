@@ -28,7 +28,7 @@ module Admin
       @bets = permitted_params.to_h.values.map do |bets_params|
         bet = Bet.new(bets_params.except(:name))
         bet.parlay_group = parlay_group_id if parlay_group_id
-        bet.match = Match.find_by(name: bets_params[:name])
+        bet.match = Match.find_by(name: bets_params[:name]) || Match.create(name: bets_params[:name])
         authorize bet
         bet
       end
@@ -37,7 +37,7 @@ module Admin
         @bets.each(&:save)
         redirect_to admin_bets_path, notice: 'Your pick/parlay is created!'
       else
-        flash.now[:notice] = 'Something went wrong!'
+        flash.now[:alert] = "Something went wrong! #{@bets.flat_map { |bet| bet.errors.full_messages }}"
         render :new, status: 422
       end
     end

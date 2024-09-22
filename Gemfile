@@ -87,3 +87,10 @@ gem 'kaminari' # 1.2.2
 gem 'sidekiq' # 7.3.2
 
 gem 'stripe' # 11.7.0
+
+gem 'sidekiq'
+
+gem 'postmark-rails'
+
+gem 'premailer-rails'
+

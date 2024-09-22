@@ -35,6 +35,9 @@ module Admin
 
       if @bets.all?(&:valid?)
         @bets.each(&:save)
+        bets_ids = @bets.map(&:id)
+        BetsMailer.send_picks(bets_ids).deliver_later
+
         redirect_to admin_bets_path, notice: 'Your pick/parlay is created!'
       else
         flash.now[:alert] = "Something went wrong! #{@bets.flat_map { |bet| bet.errors.full_messages }}"
@@ -128,6 +131,9 @@ module Admin
       @matches = @bet.part_of_parlay? ? @bets.map { |bet| bet.match.name } : [@bet.match.name]
 
       render json: { bets: @bets, matches: @matches }
+    end
+
+    def send_daily_picks
     end
 
     private

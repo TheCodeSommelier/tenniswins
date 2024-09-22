@@ -1,0 +1,73 @@
+<div class="card" id="bet_<%= bets.first.parlay_group || bets.first.id %>">
+  <div class="card-content">
+    <div class="card-body">
+      <div class="bet-type-result">
+        <% if bets.first.parlay_group %>
+          <h3>Parlay</h3>
+        <% else %>
+          <h3>Pick</h3>
+        <% end %>
+
+        <% if !mailer %>
+          <% if bets.first.won? %>
+            <p class="won">W</p>
+          <% elsif bets.first.won.nil? %>
+            <p class="not-decided">No result yet</p>
+          <% else %>
+            <p class="loss">L</p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="matches-grid">
+        <% bets.each do |bet| %>
+          <div class="match-column">
+            <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
+            <% if policy(bet).view_data? || !policy(bet).data_should_be_visible?(bet) %>
+              <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
+              <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
+            <% else %>
+              <p class="card-match-name highlight-prim">Content hidden<br></p>
+              <p><strong>Odds:</strong> Content hidden <span class="separator">|</span> <strong>US Odds:</strong> Content hidden</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if bets.first.parlay_group %>
+        <div>
+          <p class="total-odds">
+            <% if policy(bets.first).view_data? || !policy(bets.first).data_should_be_visible?(bets.first) %>
+              <strong>Total Odds:</strong> <%= calculate_total_odds(bets) %>
+            <% else %>
+              <strong>Total Odds:</strong> Content hidden
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <% if !mailer && current_user.admin? %>
+      <div class="buttons-cont">
+        <%= button_to admin_bet_path(bets.first.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button-danger-outline card-button" do %>
+          <%= icon('fa-solid', 'trash') %>
+        <% end %>
+
+        <%= button_to edit_admin_bet_path(bets.first.id), method: :get, class: "button-warning-outline card-button" do %>
+          <%= icon('fa-solid', 'pencil') %>
+        <% end %>
+
+        <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline card-button" %>
+        <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline card-button" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Overlay for blurred content and lock icon -->
+  <% if !policy(bets.first).view_data? && policy(bets.first).data_should_be_visible?(bets.first) %>
+    <div class="cover">
+      <%= icon("fa-solid", "lock") %>
+      <%= link_to 'Unlock current picks', root_path(anchor: 'pricing-section'), class: "button-prim" %>
+    </div>
+  <% end %>
+</div>

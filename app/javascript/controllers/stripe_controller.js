@@ -36,7 +36,7 @@ export default class extends Controller {
             messageContainer.textContent = result.error.message;
           } else {
             if (this.isRecurring) {
-              this.#subscribeCustomer(result.paymentIntent.payment_method);
+              this.#subscribeCustomer(paymentIntent.payment_method);
             }
             window.location.href = `${this.baseURL}/stripe/success`;
           }

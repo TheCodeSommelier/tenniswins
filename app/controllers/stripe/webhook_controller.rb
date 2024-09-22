@@ -43,6 +43,7 @@ module Stripe
 
       if payment_intent.metadata['recurring'] == 'false'
         credits = product.metadata['credits'].to_i
+        credits += customer.credits || 0
         customer.update(credits:)
       end
 

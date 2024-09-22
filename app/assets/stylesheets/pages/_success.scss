@@ -1,0 +1,13 @@
+#success-cont {
+  @include flex-center;
+  flex-direction: column;
+  height: 75vh;
+  text-align: center;
+  width: 100%;
+
+
+  a {
+    width: 25%;
+    margin-top: 1rem;
+  }
+}

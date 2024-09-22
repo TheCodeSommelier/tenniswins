@@ -133,7 +133,19 @@ module Admin
       render json: { bets: @bets, matches: @matches }
     end
 
-    def send_daily_picks
+    def unlock_pick
+      bet = Bet.find(params[:id].to_i)
+      if current_user.credits.positive?
+        current_user.update(credits: current_user.credits - 1)
+        if bet.part_of_parlay?
+          Bet.where(parlay_group: bet.parlay_group).each { |bet| current_user.user_bets.create(bet:) }
+        else
+          current_user.user_bets.create(bet:)
+        end
+        redirect_to admin_bets_path, notice: 'Bet unlocked!'
+      else
+        redirect_to admin_bets_path, alert: "You don't have enough credits..."
+      end
     end
 
     private

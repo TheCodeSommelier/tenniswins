@@ -57,8 +57,8 @@
           <%= icon('fa-solid', 'pencil') %>
         <% end %>
 
-        <%= button_to 'Won', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline card-button" %>
-        <%= button_to 'Lost', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline card-button" %>
+        <%= button_to 'Correct', admin_bet_won_path(html_options: { won: true, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-success-outline card-button" %>
+        <%= button_to 'False', admin_bet_won_path(html_options: { won: false, bet_id: bets.first.parlay_group || bets.first.id }), method: :patch, class: "button-danger-outline card-button" %>
       </div>
     <% end %>
   </div>
@@ -67,7 +67,7 @@
   <% if !policy(bets.first).view_data? && policy(bets.first).data_should_be_visible?(bets.first) %>
     <div class="cover">
       <%= icon("fa-solid", "lock") %>
-      <%= link_to 'Unlock current picks', root_path(anchor: 'pricing-section'), class: "button-prim" %>
+      <%= button_to 'Unlock bet', admin_unlock_bet_path(bets.first), method: :patch, class: "button-prim" %>
     </div>
   <% end %>
 </div>

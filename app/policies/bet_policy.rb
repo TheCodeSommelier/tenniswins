@@ -34,11 +34,17 @@ class BetPolicy < ApplicationPolicy
   end
 
   def view_data?
-    user.admin? || user.premium? || user.credits.positive?
+    user.admin? || user.premium? || user_has_unlocked_bet?
   end
 
   def data_should_be_visible?(bet)
     bet.created_at >= 1.day.ago
+  end
+
+  private
+
+  def user_has_unlocked_bet?
+    UserBet.where(user:, bet: record).exists?
   end
 
   class Scope < ApplicationPolicy::Scope

@@ -6,14 +6,14 @@ class PagesController < ApplicationController
   def home
     @number_won_bets = Bet.number_won_bets
 
-    single_bet_money_made = Bet.where(won: true, parlay_group: nil).sum('100 * (odds - 1)')
+    single_bet_money_made = Bet.where(won: true, parlay_group: nil).sum('100 * (eu_odds - 1)')
 
     parlay_money_made = Bet.where(won: true).where.not(parlay_group: nil)
                            .group(:parlay_group)
                            .pluck(:parlay_group)
                            .sum do |group|
-                             total_odds = Bet.where(parlay_group: group).pluck(:odds).reduce(1) do |product, odds|
-                               product * odds
+                             total_odds = Bet.where(parlay_group: group).pluck(:eu_odds).reduce(1) do |product, eu_odds|
+                               product * eu_odds
                              end
                              100 * (total_odds - 1)
                            end

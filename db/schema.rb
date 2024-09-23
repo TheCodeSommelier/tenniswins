@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_22_102105) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_22_175026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bets", force: :cascade do |t|
-    t.decimal "odds"
+    t.decimal "eu_odds"
     t.integer "us_odds"
     t.boolean "won"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "parlay_group"
     t.bigint "match_id", null: false
+    t.string "pick"
     t.index ["match_id"], name: "index_bets_on_match_id"
   end
 

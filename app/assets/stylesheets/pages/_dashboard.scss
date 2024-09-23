@@ -113,4 +113,21 @@
       margin: 0;
     }
   }
+
+  .cards-chart-cont {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    position: relative;
+  }
+
+  .chart-cont {
+    position: relative;
+    top: 0;
+    z-index: 10;
+  }
+
+  .base-calculation-p {
+    margin-top: 1rem;
+  }
 }

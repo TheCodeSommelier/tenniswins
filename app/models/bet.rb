@@ -2,10 +2,10 @@
 
 class Bet < ApplicationRecord
   belongs_to :match
-  has_many :user_bets
+  has_many :user_bets, dependent: :destroy
   has_many :users, through: :user_bets
 
-  validates :odds, :us_odds, presence: true
+  validates :eu_odds, :us_odds, :pick, presence: true
 
   def part_of_parlay?
     parlay_group.present?

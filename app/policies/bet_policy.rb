@@ -34,11 +34,11 @@ class BetPolicy < ApplicationPolicy
   end
 
   def view_data?
-    user.admin? || user.premium? || user_has_unlocked_bet?
+    !record.won.nil? || user.admin? || user.premium? || user_has_unlocked_bet?
   end
 
   def data_should_be_visible?(bet)
-    bet.created_at >= 1.day.ago
+    !bet.won.nil? || bet.created_at >= 1.day.ago
   end
 
   private

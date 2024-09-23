@@ -5,6 +5,10 @@ module Admin
     before_action :set_bet, only: %i[edit update destroy]
 
     def index
+      @won_bets_count = Bet.where(won: true).count
+      @lost_bets_count = Bet.where(won: false).count
+      @money_made ||= total_money_made
+
       @grouped_bets = policy_scope(Bet).includes(:match)
                                        .order(created_at: :desc)
                                        .group_by { |bet| bet.parlay_group || bet.id }
@@ -157,9 +161,25 @@ module Admin
     def bets_params
       params.require(:bets).permit!.tap do |whitelisted|
         whitelisted.each do |key, value|
-          whitelisted[key] = value.permit(:name, :odds, :us_odds, :betId) if value.is_a?(ActionController::Parameters)
+          whitelisted[key] = value.permit(:name, :pick, :eu_odds, :us_odds, :betId) if value.is_a?(ActionController::Parameters)
         end
       end
+    end
+
+    def total_money_made
+      single_bet_money_made = Bet.where(won: true, parlay_group: nil).sum('100 * (eu_odds - 1)')
+
+      parlay_money_made = Bet.where(won: true).where.not(parlay_group: nil)
+                            .group(:parlay_group)
+                            .pluck(:parlay_group)
+                            .sum do |group|
+                              total_odds = Bet.where(parlay_group: group).pluck(:eu_odds).reduce(1) do |product, eu_odds|
+                                product * eu_odds
+                              end
+                              100 * (total_odds - 1)
+                            end
+
+      (single_bet_money_made + parlay_money_made).to_i
     end
   end
 end

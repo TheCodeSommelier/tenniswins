@@ -75,7 +75,7 @@
             <li>Access to Historical Picks and Data</li>
             <li>Access to Discord / Telegram</li>
             <li>Access to Daily Picks in Members Section for that day</li>
-            <li>Access to 3 picks or parlays</li>
+            <li>You get 3 credits (1 credit = 1 bet)</li>
           </ul>
           <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_3_PICKS')), class: "button-prim-outline" %>
         </div>
@@ -88,7 +88,6 @@
             <li>Access to Historical Picks and Data</li>
             <li>Access to Discord / Telegram</li>
             <li>Access to Daily Picks in Members Section</li>
-            <li>Every Pick Emailed to You</li>
           </ul>
           <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_UNL_PICKS')), class: "button-prim-outline" %>
         </div>
@@ -101,7 +100,7 @@
             <li>Access to Historical Picks and Data</li>
             <li>Access to Discord / Telegram</li>
             <li>Access to Daily Picks in Members Section for a week</li>
-            <li>Access to 15 picks or parlays</li>
+            <li>You get 15 credits (1 credit = 1 bet)</li>
           </ul>
           <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_15_PICKS')), class: "button-prim-outline" %>
         </div>

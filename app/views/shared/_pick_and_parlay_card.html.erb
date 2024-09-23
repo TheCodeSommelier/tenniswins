@@ -25,10 +25,11 @@
             <p class="bet-date-mar"><%= bet.created_at.strftime('%e %b %Y') %></p>
             <% if policy(bet).view_data? || !policy(bet).data_should_be_visible?(bet) %>
               <p class="card-match-name highlight-prim"><%= bet.match.name %><br></p>
-              <p><strong>Odds:</strong> <%= bet.odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
+              <p class="card-match-name highlight-prim"><%= bet.pick %><br></p>
+              <p><strong>EU odds:</strong> <%= bet.eu_odds %> <span class="separator">|</span> <strong>US Odds:</strong> <%= bet.us_odds %></p>
             <% else %>
               <p class="card-match-name highlight-prim">Content hidden<br></p>
-              <p><strong>Odds:</strong> Content hidden <span class="separator">|</span> <strong>US Odds:</strong> Content hidden</p>
+              <p><strong>EU odds:</strong> Content hidden <span class="separator">|</span> <strong>US Odds:</strong> Content hidden</p>
             <% end %>
           </div>
         <% end %>

@@ -48,6 +48,7 @@ export default class BetFormBuilder {
       type: "text",
       placeholder: "Federer vs. Muroň",
       data: { action: "keyup->bets#autocomplete" },
+      required: true
     });
 
     formFieldDiv.appendChild(betNameLabel);
@@ -57,27 +58,28 @@ export default class BetFormBuilder {
   }
 
   createOddsSection(betIndex) {
-    const oddsFieldDivs = [this.createFormFieldDiv(), this.createFormFieldDiv()];
+    const oddsFieldDivs = [this.createFormFieldDiv(), this.createFormFieldDiv(), this.createFormFieldDiv()];
     const oddInputsCont = this.createOddInputsContainer();
 
-
     const betOddsLabel = this.formUtils.buildLabel({
-      for: `bet_${betIndex}_odds`,
+      for: `bet_${betIndex}_eu_odds`,
       classes: ["form-label"],
     });
-    betOddsLabel.innerText = `Bet ${betIndex} Odds:`;
+    betOddsLabel.innerText = `Bet ${betIndex} EU odds:`;
 
     const betOddsInput = this.formUtils.buildInput({
-      name: `bets[bet${betIndex}][odds]`,
-      id: `bet_${betIndex}_odds`,
+      name: `bets[bet${betIndex}][eu_odds]`,
+      id: `bet_${betIndex}_eu_odds`,
       type: "number",
       step: 0.01,
       placeholder: "e.g., 2.50",
       classes: ["odds-input"],
+      required: true
     });
 
     oddInputsCont.appendChild(oddsFieldDivs[0])
     oddInputsCont.appendChild(oddsFieldDivs[1])
+    oddInputsCont.appendChild(oddsFieldDivs[2])
 
     oddsFieldDivs[0].appendChild(betOddsLabel);
     oddsFieldDivs[0].appendChild(betOddsInput);
@@ -95,10 +97,29 @@ export default class BetFormBuilder {
       step: 1,
       placeholder: "e.g., 150",
       classes: ["us-odds-input"],
+      required: true
     });
 
     oddsFieldDivs[1].appendChild(betUsOddsLabel);
     oddsFieldDivs[1].appendChild(betUsOddsInput);
+
+    const betPickLabel = this.formUtils.buildLabel({
+      for: `bet_${betIndex}_pick`,
+      classes: ["form-label"],
+    });
+    betPickLabel.innerText = `Bet ${betIndex} pick:`;
+
+    const betPickInput = this.formUtils.buildInput({
+      name: `bets[bet${betIndex}][pick]`,
+      id: `bet_${betIndex}_us_odds`,
+      type: "text",
+      placeholder: "e.g. Muroň to win",
+      classes: ["pick-input"],
+      required: true
+    });
+
+    oddsFieldDivs[2].appendChild(betPickLabel);
+    oddsFieldDivs[2].appendChild(betPickInput);
 
     return oddInputsCont;
   }

@@ -38,7 +38,7 @@ class BetPolicy < ApplicationPolicy
   end
 
   def data_should_be_visible?(bet)
-    !bet.won.nil? || bet.created_at >= 1.day.ago
+    !bet.won.nil?
   end
 
   private

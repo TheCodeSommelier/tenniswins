@@ -5,8 +5,6 @@ module Admin
     before_action :set_bet, only: %i[edit update destroy]
 
     def index
-      @won_bets_count = Bet.where(won: true).count
-      @lost_bets_count = Bet.where(won: false).count
       @money_made ||= total_money_made
 
       @grouped_bets = policy_scope(Bet).includes(:match)
@@ -14,6 +12,19 @@ module Admin
                                        .group_by { |bet| bet.parlay_group || bet.id }
                                        .values
 
+      # Initialize counters
+      @won_bets_count = 0
+      @lost_bets_count = 0
+
+      # Analyze each group of bets (either single bets or parlays)
+      @grouped_bets.each do |group|
+        if group.all? { |bet| bet.won }
+          @won_bets_count += 1
+        elsif group.any? { |bet| !bet.won || bet.won.nil? }
+          # Count as lost if any of the bets in the group are lost or nil
+          @lost_bets_count += 1
+        end
+      end
       @paginated_groups = Kaminari.paginate_array(@grouped_bets)
                                   .page(params[:page])
                                   .per(6)

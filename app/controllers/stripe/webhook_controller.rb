@@ -27,6 +27,8 @@ module Stripe
         payment_intent = event.data.object
         customer = User.find_by(stripe_customer_id: payment_intent.customer)
         customer.update(premium: true)
+        UsersMailer.welcome_new_user(customer).deliver_later
+      when 'customer.subscription.deleted'
       else
         Rails.logger.warn "Unhandled event type: #{event['type']}"
       end

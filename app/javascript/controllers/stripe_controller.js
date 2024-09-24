@@ -31,6 +31,7 @@ export default class extends Controller {
           redirect: 'if_required'
         })
         .then((result) => {
+          const paymentIntent = result.paymentIntent
           if (result.error) {
             const messageContainer = document.querySelector("#error-message");
             messageContainer.textContent = result.error.message;

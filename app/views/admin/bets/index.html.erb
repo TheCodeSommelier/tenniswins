@@ -1,25 +1,29 @@
-<div id="dashboard-cont" data-controller="chart" data-chart-won-bets-value="<%= @won_bets_count %>" data-chart-lost-bets-value="<%= @lost_bets_count %>" data-chart-money-made-value="<%= @money_made %>">
+<div class="c-dashboard u-c-content" data-controller="chart" data-chart-won-bets-value="<%= @won_bets_count %>" data-chart-lost-bets-value="<%= @lost_bets_count %>">
   <% if current_user.admin? %>
-    <div class="buttons-cont">
-      <%= link_to new_admin_bet_path, class: "button-prim" do %>
+    <div class="c-dashboard__buttons-cont">
+      <%= link_to new_admin_bet_path, class: "c-button" do %>
         <%= icon('fa-solid', 'plus') %> Create a bet
       <% end %>
     </div>
   <% end %>
 
 
-  <div class="cards-chart-cont">
-    <div class="cards-cont">
+  <div class="c-dashboard__c-cards-chart">
+    <div class="c-dashboard__c-cards">
       <% @paginated_groups.each do |bets| %>
-        <%= render 'shared/pick_and_parlay_card', bets:, mailer: false %>
+        <%= render 'shared/pick_and_parlay_card', bets: %>
       <% end %>
 
       <%= paginate @paginated_groups, params: request.query_parameters %>
     </div>
 
-    <div class="chart-cont">
+    <div class="c-dashboard__c-chart">
       <canvas id="betsPieChart" width="400" height="400"></canvas>
-      <p class="base-calculation-p"># Calculated at 100$ bet</p>
+      <div class="c-dashboard__money-display">
+        <p class="c-dashboard__desc-money-value">Made for betters</p>
+        <p class="c-dashboard__money-value">$<%= @money_made %></p>
+        <p class="c-dashboard__money-base"># Calculated at 100$ bet</p>
+      </div>
     </div>
   </div>
 </div>

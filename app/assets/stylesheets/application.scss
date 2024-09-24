@@ -1,3 +1,11 @@
+/*
+  !!!Convetions used!!!
+  .card (Block)
+  .card__content (Element)
+  .card__body (Element)
+  .card--covered (Modifier)
+*/
+
 @import 'config/index';
 @import 'pages/index';
 @import 'components/index';
@@ -37,11 +45,11 @@ a {
   color: $font-dark;
 }
 
-.content-c {
-  padding: 0 12rem;
+.u-c-content {
+  padding: 0 9rem;
 }
 
-.highlight-prim {
+.u-highlight-prim {
   color: $primary-color;
 }
 

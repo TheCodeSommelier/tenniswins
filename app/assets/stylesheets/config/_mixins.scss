@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+@mixin result-status($color) {
+  background-color: rgba($color, 0.5);
+  border: solid 1px $color;
+  padding: 0.25rem;
+}
+
 @mixin responsive-font($min-size, $max-size) {
   $min-size-px: if(unit($min-size) == 'px', $min-size, $min-size * 16px);
   $max-size-px: if(unit($max-size) == 'px', $max-size, $max-size * 16px);

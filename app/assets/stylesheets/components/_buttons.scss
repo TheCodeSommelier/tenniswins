@@ -1,5 +1,5 @@
-// Primary button
-.button-prim {
+// Buttons
+.c-button {
   @include flex-center;
   color: $bg-color;
   font-size: 1rem;
@@ -26,110 +26,64 @@
       transition: transform 0.3s ease;
     }
   }
-}
 
-.button-prim-outline {
-  @include flex-center;
-  color: $primary-color;
-  font-size: 1rem;
-  border: 2px solid $primary-color;
-  padding: calc(16px - 2px);
-  transition: $transition-prim;
-  font-weight: 700;
-  cursor: pointer;
-  background-color: $bg-color;
-  height: fit-content;
-
-  i {
-    margin-right: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
+  &--outline {
+    color: $primary-color;
+    font-size: 1rem;
     border: 2px solid $primary-color;
-    color: $bg-color;
-    background-color: $primary-color;
+    padding: calc(1rem - 2px);
     transition: $transition-prim;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: $bg-color;
+    height: fit-content;
 
-    i {
-      transform: rotate(360deg);
-      transition: transform 0.3s ease;
+    &:hover {
+      border: 2px solid $primary-color;
+      color: $bg-color;
+      background-color: $primary-color;
+      transition: $transition-prim;
+
+      i {
+        transform: rotate(360deg);
+        transition: transform 0.3s ease;
+      }
     }
   }
-}
 
-// System buttons
+  &--warning-outline {
+    @extend .c-button--outline;
+    border-color: $s-warning;
+    color: $s-warning;
 
-.button-danger-outline {
-  border: 2px solid $s-danger;
-  padding: 0.5rem;
-  background-color: $bg-color;
-  color: $s-danger;
-  cursor: pointer;
-
-  i {
-    margin-right: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    background-color: $s-danger;
-    color: $font-light;
-    transition: 0.3s ease-in;
-
-    i {
-      transform: rotate(360deg);
-      transition: transform 0.3s ease;
+    &:hover {
+      background-color: $s-warning;
+      border-color: $s-warning;
+      color: $font-dark;
     }
   }
-}
 
-.button-success-outline {
-  border: 2px solid $s-success;
-  padding: 0.5rem;
-  background-color: $bg-color;
-  color: $s-success;
-  transition: 0.3s ease-in;
-  cursor: pointer;
+  &--danger-outline {
+    @extend .c-button--outline;
+    border-color: $s-danger;
+    color: $s-danger;
 
-  i {
-    margin-right: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    background-color: $s-success;
-    color: $font-dark;
-    transition: 0.3s ease-in;
-
-    i {
-      transform: rotate(360deg);
-      transition: transform 0.3s ease;
+    &:hover {
+      background-color: $s-danger;
+      border-color: $s-danger;
+      color: $font-light;
     }
   }
-}
 
-.button-warning-outline {
-  border: 2px solid $s-warning;
-  padding: 0.5rem;
-  background-color: $bg-color;
-  color: $s-warning;
-  transition: 0.3s ease-in;
-  cursor: pointer;
+  &--success-outline {
+    @extend .c-button--outline;
+    border-color: $s-success;
+    color: $s-success;
 
-  i {
-    margin-right: 0.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    background-color: $s-warning;
-    color: $font-dark;
-    transition: 0.3s ease-in;
-
-    i {
-      transform: rotate(360deg);
-      transition: transform 0.3s ease;
+    &:hover {
+      background-color: $s-success;
+      border-color: $s-success;
+      color: $font-dark;
     }
   }
 }

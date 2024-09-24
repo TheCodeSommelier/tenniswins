@@ -34,17 +34,22 @@ class BetPolicy < ApplicationPolicy
   end
 
   def view_data?
-    !record.won.nil? || user.admin? || user.premium? || user_has_unlocked_bet?
-  end
-
-  def data_should_be_visible?(bet)
-    !bet.won.nil?
+    not_nil_won? || user_has_access?
   end
 
   private
 
+  def not_nil_won?
+    !record.won.nil?
+  end
+
+  def user_has_access?
+    user.admin? || user.premium? || user_has_unlocked_bet?
+  end
+
+  # Checks if the user has unlocked the bet
   def user_has_unlocked_bet?
-    UserBet.where(user:, bet: record).exists?
+    UserBet.where(user: user, bet: record).exists?
   end
 
   class Scope < ApplicationPolicy::Scope

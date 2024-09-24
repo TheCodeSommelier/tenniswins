@@ -1,0 +1,12 @@
+<div class="c-dashboard__buttons-cont">
+  <%= button_to admin_bet_path(bet.id), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "c-button--danger-outline c-bet-card__button" do %>
+    <%= icon('fa-solid', 'trash') %>
+  <% end %>
+
+  <%= button_to edit_admin_bet_path(bet.id), method: :get, class: "c-button--warning-outline c-bet-card__button" do %>
+    <%= icon('fa-solid', 'pencil') %>
+  <% end %>
+
+  <%= button_to 'Win', admin_bet_won_path(html_options: { won: true, bet_id: bet.parlay_group || bet.id }), method: :patch, class: "c-button--success-outline c-bet-card__button" %>
+  <%= button_to 'Loss', admin_bet_won_path(html_options: { won: false, bet_id: bet.parlay_group || bet.id }), method: :patch, class: "c-button--danger-outline c-bet-card__button" %>
+</div>

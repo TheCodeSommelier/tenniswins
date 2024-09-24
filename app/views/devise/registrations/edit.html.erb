@@ -28,7 +28,7 @@
     <div class="field">
       <%= f.label :password do %>
         Password
-        <%= content_tag :span, "(leave blank if you don't want to change it)", class: 'highlight-prim' %>
+        <%= content_tag :span, "(leave blank if you don't want to change it)", class: 'u-highlight-prim' %>
       <% end %>
       <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••" %>
       <% if @minimum_password_length %>
@@ -44,19 +44,19 @@
     <div class="field">
       <%= f.label :current_password do %>
         Current password
-        <%= content_tag :span, '(we need your current password to confirm your changes)', class: 'highlight-prim' %>
+        <%= content_tag :span, '(we need your current password to confirm your changes)', class: 'u-highlight-prim' %>
       <% end %>
       <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "••••••••" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Update", class: "button-prim" %>
+      <%= f.submit "Update", class: "c-button" %>
     </div>
   <% end %>
 
   <h3>Cancel my account</h3>
 
-  <div class="cancel-button-div">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button-prim-outline", style: "width: 200px;" %></div>
+  <div class="cancel-button-div">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "c-button--outline", style: "width: 200px;" %></div>
 
   <%= link_to "Back", :back %>
 </div>

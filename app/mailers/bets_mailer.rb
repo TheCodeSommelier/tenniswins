@@ -1,13 +1,13 @@
 class BetsMailer < ApplicationMailer
-  def send_picks(bets_ids)
-    premium_user_emails = User.all.select(:email)
-
-    premium_user_emails.each do |email|
-      mail(
-        to: Rails.env.production? ? email : 'hello@tenniswins.com',
-        subject: 'New picks and parlays have been added',
-        message_stream: 'outbound'
-      )
+  def new_picks_email(user)
+    @user = user
+    @broadcast = true
+    mail(
+      to: Rails.env.production? ? @user.email : 'hello@tenniswins.com',
+      subject: 'New picks arrived',
+      message_stream: 'broadcast'
+    ) do |format|
+      format.html { render 'new_picks_email' }
     end
   end
 end

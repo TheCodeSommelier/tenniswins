@@ -94,3 +94,4 @@ gem 'postmark-rails'
 
 gem 'premailer-rails'
 
+gem 'httparty'

@@ -69,6 +69,9 @@
       <p>
         This email and any attached files are confidential and intended solely for the recipient. If you have received this email in error, please inform the sender and delete it immediately. Please do not forward this email, as it may contain sensitive information.
       </p>
+      <% if @broadcast %>
+        <a href=\"{{{ pm:unsubscribe }}}\" style=\"text-decoration:none;\">Unsubscribe from this list</a>
+      <% end %>
     </footer>
   </body>
 </html>

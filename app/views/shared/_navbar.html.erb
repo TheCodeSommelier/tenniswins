@@ -7,13 +7,13 @@
     <%= link_to 'How it works', root_path(anchor: 'how-it-works'), class: "nav-link" %>
 
     <% unless user_signed_in? %>
-      <%= link_to "Sign up", new_user_registration_path, class: "button-prim-outline" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "c-button--outline" %>
     <% end %>
 
     <% if policy(Bet).index? %>
-      <%= link_to "Picks", admin_bets_path, class: "button-prim" %>
+      <%= link_to "Picks", admin_bets_path, class: "c-button" %>
     <% else %>
-      <%= link_to 'Sign in', new_user_session_path, class: "button-prim" %>
+      <%= link_to 'Sign in', new_user_session_path, class: "c-button" %>
     <% end %>
 
     <% if user_signed_in? %>

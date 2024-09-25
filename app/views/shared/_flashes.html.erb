@@ -1,6 +1,6 @@
 <% if flash[:notice] %>
   <div class="flash-message success">
-    <button class="button-prim" onclick="closeFlash()">x</button>
+    <button class="c-button" onclick="closeFlash()">x</button>
     <% Array(flash[:notice]).each do |msg| %>
       <p><%= msg %></p>
     <% end %>
@@ -9,7 +9,7 @@
 
 <% if flash[:alert] %>
   <div class="flash-message alert">
-    <button class="button-prim" onclick="closeFlash()">x</button>
+    <button class="c-button" onclick="closeFlash()">x</button>
     <h3>Please correct the following issues:</h5>
     <ul>
       <% Array(flash[:alert]).each do |msg| %>

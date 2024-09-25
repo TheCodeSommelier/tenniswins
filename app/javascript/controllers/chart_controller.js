@@ -5,8 +5,7 @@ import { Chart } from "chart.js";
 export default class extends Controller {
   static values = {
     wonBets: Number,
-    lostBets: Number,
-    moneyMade: String
+    lostBets: Number
   };
 
   connect() {
@@ -16,7 +15,6 @@ export default class extends Controller {
   initializeChart() {
     const wonBets = this.wonBetsValue;
     const lostBets = this.lostBetsValue;
-    const moneyMade = this.moneyMadeValue;
 
     const ctx = document.getElementById('betsPieChart').getContext('2d');
     new Chart(ctx, {
@@ -47,40 +45,8 @@ export default class extends Controller {
               pointStyle: 'rectRounded'
             }
           },
-          centerText: {
-            display: true,
-            text: `$${moneyMade}`
-          }
         }
       },
-      plugins: [this.#createCenterTextPlugin()]
     });
-  }
-
-  #createCenterTextPlugin() {
-    return {
-      id: 'centerText',
-      beforeDraw(chart) {
-        if (chart.config.options.plugins.centerText.display !== null &&
-            typeof chart.config.options.plugins.centerText.display !== 'undefined' &&
-            chart.config.options.plugins.centerText.display) {
-          const ctx = chart.ctx;
-          const centerText = chart.config.options.plugins.centerText.text;
-          const width = chart.width;
-          const height = chart.height;
-          ctx.restore();
-          const fontSize = (height / 114).toFixed(2);
-          ctx.font = `${fontSize}em sans-serif`;
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = "#C1E021";
-
-          const textX = Math.round((width - ctx.measureText(centerText).width) / 2);
-          const textY = height / 2 + 20;
-
-          ctx.fillText(centerText, textX, textY);
-          ctx.save();
-        }
-      }
-    };
   }
 }

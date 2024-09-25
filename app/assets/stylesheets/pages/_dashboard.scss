@@ -1,44 +1,136 @@
-#dashboard-cont {
-  padding: 0 9rem;
+// Dashboard Container
+.c-dashboard {
+  &__buttons-cont {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    width: fit-content;
+    gap: 20px;
+  }
 
-  .bet-type-result {
+  &__c-cards-chart {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    position: relative;
+  }
+
+  canvas {
+    position: sticky;
+    top: 3rem;
+  }
+
+  &__c-chart {
+    display: flex;
+    align-items: center;
+    flex-direction: column
+  }
+
+  &__money-display {
+    @include flex-center;
+    flex-direction: column;
+    width: 75%;
+    padding: 2rem;
+    border: 2px solid $primary-color;
+    margin-top: 1rem;
+    position: sticky;
+    top: calc(410px + 3rem);
+    border-radius: 8px;
+  }
+
+  &__money-value, &__money-base, &__desc-money-value {
+    color: $font-light;
+    margin-bottom: 0.25rem;
+  }
+
+  &__desc-money-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  &__money-value {
+    color: $primary-color;
+    font-weight: 700;
+    font-size: 3rem;
+    margin: 1rem auto;
+  }
+
+  &__money-base {
+    font-style: italic;
+    font-size: 1rem;
+  }
+}
+
+// Bet Card
+.c-bet-card {
+  margin-top: 1rem;
+  padding: 12px;
+  border: solid 2px $primary-color;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 8px;
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__body,
+  &__total-odds,
+  &__match-name {
+    margin-top: 0.5rem;
+  }
+
+  &__type-result {
     display: flex;
     gap: 20px;
     align-items: center;
   }
 
-  .card {
-    margin-top: 1rem;
-    padding: 12px;
-    border: solid 2px $primary-color;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    border-radius: 8px;
+  &__match-name {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
 
-    .won, .loss, .not-decided {
-      padding: 5px;
-      display: inline-block;
-      font-size: 12px;
-    }
+  &__matches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
 
-    .loss {
-      background-color: rgba($color: $s-danger, $alpha: 0.5);
-      border: solid 1px $s-danger;
-    }
-
-    .won {
-      background-color: rgba($color: $s-success, $alpha: 0.5);
-      border: solid 1px $s-success;
-    }
-
-    .not-decided {
-      background-color: rgba($color: $s-neutral, $alpha: 0.5);
-      border: solid 1px $s-neutral;
+  &__bet-date {
+    margin: 0.5rem 0;
+    span {
+      font-style: italic;
     }
   }
 
-  .cover {
+  &__separator {
+    margin: 0 1rem;
+  }
+
+  &__result {
+    padding: 5px;
+    display: inline-block;
+    font-size: 0.75rem;
+
+    &--won { @include result-status($s-success); }
+    &--loss { @include result-status($s-danger); }
+    &--not-decided { @include result-status($s-neutral); }
+  }
+
+  &__button {
+    padding: 0.5rem !important;
+    font-size: 1rem !important;
+
+    i {
+      margin: 0;
+    }
+  }
+
+  &__cover {
     position: absolute;
     @include flex-center;
     flex-direction: column;
@@ -48,7 +140,7 @@
     height: 100%;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    background: rgba($color: $bg-color, $alpha: 0.25);
+    background: rgba($bg-color, 0.25);
     z-index: 1;
     border-radius: 7px;
 
@@ -61,72 +153,5 @@
       margin-bottom: 1rem;
       font-size: 3rem;
     }
-  }
-
-  .card-body, .total-odds, .card-match-name {
-    margin-top: 0.5rem;
-  }
-
-  .card-content {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .card-match-name {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .matches-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-  }
-
-  .buttons-cont {
-    display: flex;
-    align-items: start;
-    justify-content: end;
-    width: fit-content;
-    gap: 20px;
-  }
-
-  .button-warning-outline {
-    font-size: 13px;
-  }
-
-  .separator {
-    margin: 0 1rem;
-  }
-
-  .bet-date-mar {
-    margin: 0.5rem 0;
-
-    span {
-      font-style: italic;
-    }
-  }
-
-  .card-button {
-    i {
-      margin: 0;
-    }
-  }
-
-  .cards-chart-cont {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    position: relative;
-  }
-
-  .chart-cont {
-    position: relative;
-    top: 0;
-  }
-
-  .base-calculation-p {
-    margin-top: 1rem;
   }
 }

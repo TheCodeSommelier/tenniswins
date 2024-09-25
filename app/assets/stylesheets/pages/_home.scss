@@ -2,8 +2,8 @@ $pricing-min-width: 250px;
 $pricing-max-width: 300px;
 
 // Main styles
-#landing-page-c {
-  .content-c {
+#c-home {
+  .u-c-content {
     max-width: $content-max-width;
     margin: 0 auto;
     padding: 0 20px;
@@ -264,7 +264,7 @@ $pricing-max-width: 300px;
       }
     }
 
-    .button-prim-success-sec {
+    .c-button-success-sec {
       display: block;
       width: 50%;
       margin: 1rem auto;

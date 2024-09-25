@@ -128,7 +128,7 @@ export default class BetFormBuilder {
     const calcOddsButton = this.formUtils.buildButton({
       type: "button",
       id: `calculate-odds-button-${this.betCount}`,
-      classes: ["button-prim-outline"],
+      classes: ["c-button--outline"],
       data: { action: "click->bets#calculateOdds" },
       text: "Calculate US odds",
     });

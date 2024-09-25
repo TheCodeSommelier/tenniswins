@@ -25,15 +25,19 @@
           <ul>
             <li class="user-menu-item"><%= link_to 'Edit account', edit_user_registration_path(current_user) %></li>
             <li class="user-menu-item"><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %></li>
-            <% unless current_user.premium %>
-              <li class="credits"><%= icon('fa-solid', 'coins') %> Credits: <span class="u-highlight-prim"><%= current_user.credits %></span></li>
+            <% if current_user.premium %>
+              <li class="credits"><%= icon('fa-solid', 'coins') %> Credits: <span class="highlight-prim">&infin;</span></li>
+            <% else %>
+              <li class="credits"><%= icon('fa-solid', 'coins') %> Credits: <span class="highlight-prim"><%= current_user.credits %></span></li>
             <% end %>
           </ul>
         </div>
       </div>
     <% end %>
-    <% if user_signed_in? && !current_user.premium %>
-      <li class="credits-nav"><%= icon('fa-solid', 'coins') %> <span class="u-highlight-prim"><%= current_user.credits %></span></li>
+    <% if user_signed_in? && current_user.premium %>
+      <li class="credits-nav"><%= icon('fa-solid', 'coins') %> <span class="highlight-prim">&infin;</span></li>
+    <% elsif user_signed_in? && !current_user.premium %>
+      <li class="credits-nav"><%= icon('fa-solid', 'coins') %> <span class="highlight-prim"><%= current_user.credits %></span></li>
     <% end %>
   </div>
 </div>

@@ -33,4 +33,8 @@ Rails.application.routes.draw do
     post 'subscribe-customer', to: 'checkout#create_subscription'
     post 'webhook', to: 'webhook#handle_webhook'
   end
+
+  namespace :postmark do
+    post 'webhook', to: 'webhook#handle_webhook'
+  end
 end

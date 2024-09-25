@@ -50,7 +50,7 @@ module Admin
 
       if @bets.all?(&:valid?)
         @bets.each(&:save)
-        messages = User.all.map do |user|
+        messages = User.where(email_sub: true).map do |user|
           BetsMailer.new_picks_email(user)
         end
         client = Postmark::ApiClient.new(ENV.fetch('POSTMARK_API_KEY'))

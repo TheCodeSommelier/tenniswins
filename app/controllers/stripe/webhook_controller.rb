@@ -24,11 +24,18 @@ module Stripe
         customer = User.find_by(stripe_customer_id: payment_intent.customer)
         handle_successful_payment_intent(payment_intent, customer)
       when 'customer.subscription.created'
-        payment_intent = event.data.object
-        customer = User.find_by(stripe_customer_id: payment_intent.customer)
+        subscription_data = event.data.object
+        customer = User.find_by(stripe_customer_id: subscription_data.customer)
         customer.update(premium: true)
         UsersMailer.welcome_new_user(customer).deliver_later
       when 'customer.subscription.deleted'
+        subscription_data = event.data.object
+        customer = User.find_by(stripe_customer_id: subscription_data.customer)
+        UsersMailer.send_goodbye(customer)
+      when 'invoice.paid'
+        invoice_data = event.data.object
+        customer = User.find_by(stripe_customer_id: invoice_data.customer)
+        UsersMailer.send_reciept(customer, invoice_data.id).deliver_later
       else
         Rails.logger.warn "Unhandled event type: #{event['type']}"
       end

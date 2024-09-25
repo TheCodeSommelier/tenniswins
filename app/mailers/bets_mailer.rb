@@ -5,7 +5,7 @@ class BetsMailer < ApplicationMailer
     mail(
       to: Rails.env.production? ? @user.email : 'hello@tenniswins.com',
       subject: 'New picks arrived',
-      message_stream: 'broadcast'
+      message_stream: 'picks-notification'
     ) do |format|
       format.html { render 'new_picks_email' }
     end

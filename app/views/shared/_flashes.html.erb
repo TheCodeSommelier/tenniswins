@@ -1,5 +1,5 @@
 <% if flash[:notice] %>
-  <div class="flash-message success">
+  <div class="c-flash--success">
     <button class="c-button" onclick="closeFlash()">x</button>
     <% Array(flash[:notice]).each do |msg| %>
       <p><%= msg %></p>
@@ -8,7 +8,7 @@
 <% end %>
 
 <% if flash[:alert] %>
-  <div class="flash-message alert">
+  <div class="c-flash--alert">
     <button class="c-button" onclick="closeFlash()">x</button>
     <h3>Please correct the following issues:</h5>
     <ul>
@@ -21,7 +21,7 @@
 
 <script>
   function closeFlash() {
-    const flashMessage = document.querySelector(".flash-message");
+    const flashMessage = document.querySelector(".c-flash");
     flashMessage.remove()
   }
 </script>

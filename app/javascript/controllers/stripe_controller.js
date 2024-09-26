@@ -24,6 +24,7 @@ export default class extends Controller {
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      this.#showProcessingMessage();
 
       try {
         // Validate the payment element
@@ -73,7 +74,7 @@ export default class extends Controller {
           ".c-checkout__error-messages"
         );
         messageContainer.textContent = error.message;
-        console.error("Payment error:", error);
+        this.#removeProcessingMessage();
       }
     });
   }
@@ -84,7 +85,6 @@ export default class extends Controller {
     const paymentData = await this.#fetchPaymentData();
     this.isRecurring = paymentData.recurring;
     this.clientSecret = paymentData.client_secret;
-    console.log(paymentData);
 
     if (!this.clientSecret) {
       console.error("Failed to fetch client secret.");
@@ -132,35 +132,35 @@ export default class extends Controller {
         name: "Tenniswins",
       },
     };
-    this.elements = this.stripe.elements({ clientSecret, appearance, paymentMethodCreation: 'manual' });
+    this.elements = this.stripe.elements({
+      clientSecret,
+      appearance,
+      paymentMethodCreation: "manual",
+    });
     const paymentElement = this.elements.create("payment", options);
     paymentElement.mount(".c-checkout__payment-element");
   }
 
   async #subscribeCustomer(paymentMethodId) {
-    try {
-      const response = await fetch("/stripe/subscribe-customer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
-            .content,
-        },
-        body: JSON.stringify({
-          prod_id: this.prodId,
-          payment_method_id: paymentMethodId,
-        }),
-      });
+    const response = await fetch("/stripe/subscribe-customer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+          .content,
+      },
+      body: JSON.stringify({
+        prod_id: this.prodId,
+        payment_method_id: paymentMethodId,
+      }),
+    });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      window.location.href = `${this.baseURL}/stripe/success`;
-    } catch (error) {
-      console.error("Subscription error:", error);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+    const data = await response.json();
+    window.location.href = `${this.baseURL}/stripe/success`;
   }
 
   async #updatePaymentMethod(paymentMethodId) {
@@ -173,7 +173,7 @@ export default class extends Controller {
       body: JSON.stringify({
         paymentMethodId: paymentMethodId,
         paymentIntentId: this.clientSecret.split("_secret_")[0],
-        productId: this.prodId
+        productId: this.prodId,
       }),
     });
 
@@ -182,5 +182,20 @@ export default class extends Controller {
     }
 
     return await response.json();
+  }
+
+  #showProcessingMessage() {
+    const flashMessage = document.createElement("div");
+    flashMessage.className = "c-flash--success";
+    flashMessage.innerHTML = `
+      <div class="c-flash__loader"></div>
+      <p>Your payment is being processed</p>
+    `;
+    document.body.insertBefore(flashMessage, document.body.firstChild);
+  }
+
+  #removeProcessingMessage() {
+    const flashMessage = document.querySelector(".c-flash--success");
+    flashMessage.remove();
   }
 }

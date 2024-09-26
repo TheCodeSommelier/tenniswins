@@ -11,7 +11,7 @@ class UsersMailer < ApplicationMailer
     )
   end
 
-  def send_reciept(user, invoice_id)
+  def send_receipt(user, invoice_id)
     email = user.email
     @name = user.first_name
 

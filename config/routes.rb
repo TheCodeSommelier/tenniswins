@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get 'success', to: 'checkout#success'
     post 'subscribe-customer', to: 'checkout#create_subscription'
     post 'webhook', to: 'webhook#handle_webhook'
+    post 'update-payment-method', to: 'checkout#update_payment_method'
   end
 
   namespace :postmark do

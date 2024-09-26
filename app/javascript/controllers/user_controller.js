@@ -29,6 +29,6 @@ export default class extends Controller {
   #hideMenu() {
     this.userMenuTarget.style.display = "none";
     this.userMenuTarget.dataset.active = false;
-    document.removeEventListener('click', this.handleOutsideClick.bind(this));
+    document.removeEventListener('click', this.#handleOutsideClick.bind(this));
   }
 }

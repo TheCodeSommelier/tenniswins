@@ -1,15 +1,15 @@
-<div class="checkout-cont" data-controller="stripe" data-public-key="<%= ENV.fetch('STRIPE_PUBLIC_TEST_KEY') %>">
+<div class="c-checkout" data-controller="stripe" data-public-key="<%= ENV.fetch('STRIPE_PUBLIC_TEST_KEY') %>">
   <div>
     <h1>Price <span class="u-highlight-prim" data-stripe-target="priceSpan"></span><span data-stripe-target="monthlySpan"></span></h1>
-    <form id="payment-form">
-      <div id="payment-element">
+    <form class="c-checkout__payment-form">
+      <div class="c-checkout__payment-element">
         <!-- Elements will create form elements here -->
       </div>
       <button type="submit" class="c-button" data-action="click->stripe#handleFormSubmission"><%= icon("fa-solid", "credit-card") %> Pay</button>
-      <div id="error-message">
+      <div class="c-checkout__error-messages">
         <!-- Display error message to your customers here -->
       </div>
     </form>
-    <p class="security-message"><span class="u-highlight-prim">#</span> All payments are processed by Stripe and secured via HTTPS protocol.</p>
+    <p class="c-checkout__security-message"><span class="u-highlight-prim">#</span> All payments are processed by Stripe and secured via HTTPS protocol.</p>
   </div>
 </div>

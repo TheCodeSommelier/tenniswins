@@ -22,7 +22,8 @@ module Stripe
       when 'payment_intent.succeeded'
         payment_intent = event.data.object
         customer = User.find_by(stripe_customer_id: payment_intent.customer)
-        handle_successful_payment_intent(payment_intent, customer)
+        Rails.logger.info "🔥 Received payment_intent.succeeded event: #{event['id']} for customer: #{customer&.id}"
+        assign_credits(payment_intent, customer) if payment_intent.metadata['recurring'] == 'false'
       when 'customer.subscription.created'
         subscription_data = event.data.object
         customer = User.find_by(stripe_customer_id: subscription_data.customer)
@@ -45,16 +46,13 @@ module Stripe
 
     private
 
-    def handle_successful_payment_intent(payment_intent, customer)
+    def assign_credits(payment_intent, customer)
       product_id = payment_intent.metadata['product_id']
       price_id = payment_intent.metadata['price_id']
       product = Stripe::Product.retrieve(product_id)
-
-      if payment_intent.metadata['recurring'] == 'false'
-        credits = product.metadata['credits'].to_i
-        credits += customer.credits || 0
-        customer.update(credits:)
-      end
+      credits = product.metadata['credits'].to_i
+      credits += customer.credits
+      customer.update(credits:)
 
       Rails.logger.info "Handled payment intent for product_id: #{product.id}, price_id: #{price_id}"
     end

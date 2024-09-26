@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CardsHelper
   def bet_type(bet)
     bet.parlay_group ? 'Parlay' : 'Pick'

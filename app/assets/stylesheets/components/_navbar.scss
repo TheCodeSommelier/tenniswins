@@ -62,7 +62,7 @@
     @include menu-item;
   }
 
-  .credits, .credits-nav {
+  .credits, .credits-nav, .user-email {
     list-style-type: none;
   }
 
@@ -72,5 +72,10 @@
 
   .credits {
     padding: 1rem;
+  }
+
+  .user-email {
+    padding: 1rem;
+    font-style: italic;
   }
 }

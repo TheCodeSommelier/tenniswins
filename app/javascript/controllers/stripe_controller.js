@@ -19,53 +19,79 @@ export default class extends Controller {
     this.#createPaymentElement();
   }
 
-  async handleFormSubmission(e) {
-    const form = document.getElementById("payment-form");
+  async handleFormSubmission() {
+    const form = document.querySelector(".c-checkout__payment-form");
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const error = await this.stripe
-        .confirmPayment({
-          elements: this.elements,
-          confirmParams: {},
-          redirect: 'if_required'
-        })
-        .then((result) => {
-          const paymentIntent = result.paymentIntent
-          if (result.error) {
-            const messageContainer = document.querySelector("#error-message");
-            messageContainer.textContent = result.error.message;
-          } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-            if (this.isRecurring) {
-              this.#subscribeCustomer(paymentIntent.payment_method);
-            }
-            window.location.href = `${this.baseURL}/stripe/success`;
-          }
-        });
 
-      if (error) {
-        // This point will only be reached if there is an immediate error when
-        // confirming the payment. Show error to your customer (for example, payment
-        // details incomplete)
-        const messageContainer = document.querySelector("#error-message");
+      try {
+        // Validate the payment element
+        const { error: submitError } = await this.elements.submit();
+        if (submitError) {
+          throw submitError;
+        }
+
+        // Create a PaymentMethod from the payment element
+        const { error: paymentMethodError, paymentMethod } =
+          await this.stripe.createPaymentMethod({
+            elements: this.elements,
+          });
+
+        if (paymentMethodError) {
+          throw paymentMethodError;
+        }
+
+        // Update the payment method on your server and get an updated client secret
+        const updatedPaymentIntent = await this.#updatePaymentMethod(
+          paymentMethod.id
+        );
+
+        // Confirm the payment with the updated client secret
+        const { error: confirmError, paymentIntent } =
+          await this.stripe.confirmPayment({
+            clientSecret: updatedPaymentIntent.client_secret,
+            confirmParams: {
+              payment_method: paymentMethod.id,
+              return_url: `${this.baseURL}/stripe/success`,
+            },
+            redirect: "if_required",
+          });
+
+        if (confirmError) {
+          throw confirmError;
+        }
+
+        if (paymentIntent.status === "succeeded") {
+          if (this.isRecurring) {
+            await this.#subscribeCustomer(paymentIntent.payment_method);
+          }
+          window.location.href = `${this.baseURL}/stripe/success`;
+        }
+      } catch (error) {
+        const messageContainer = document.querySelector(
+          ".c-checkout__error-messages"
+        );
         messageContainer.textContent = error.message;
-        return;
+        console.error("Payment error:", error);
       }
     });
   }
 
   // Private
 
-  async #createPaymentElement(elements) {
+  async #createPaymentElement() {
     const paymentData = await this.#fetchPaymentData();
     this.isRecurring = paymentData.recurring;
+    this.clientSecret = paymentData.client_secret;
+    console.log(paymentData);
 
-    if (!paymentData.client_secret) {
+    if (!this.clientSecret) {
       console.error("Failed to fetch client secret.");
       return;
     }
 
-    this.#createPaymentForm(paymentData.client_secret);
+    this.#createPaymentForm(this.clientSecret);
     this.priceSpanTarget.innerText = `$${paymentData.amount}`;
     this.monthlySpanTarget.innerText = paymentData.recurring
       ? " / monthly"
@@ -106,10 +132,9 @@ export default class extends Controller {
         name: "Tenniswins",
       },
     };
-    this.elements = this.stripe.elements({ clientSecret, appearance });
+    this.elements = this.stripe.elements({ clientSecret, appearance, paymentMethodCreation: 'manual' });
     const paymentElement = this.elements.create("payment", options);
-    paymentElement.mount("#payment-element");
-    this.paymentElement = paymentElement;
+    paymentElement.mount(".c-checkout__payment-element");
   }
 
   async #subscribeCustomer(paymentMethodId) {
@@ -118,9 +143,13 @@ export default class extends Controller {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
+            .content,
         },
-        body: JSON.stringify({ prod_id: this.prodId, payment_method_id: paymentMethodId }),
+        body: JSON.stringify({
+          prod_id: this.prodId,
+          payment_method_id: paymentMethodId,
+        }),
       });
 
       if (!response.ok) {
@@ -132,5 +161,26 @@ export default class extends Controller {
     } catch (error) {
       console.error("Subscription error:", error);
     }
+  }
+
+  async #updatePaymentMethod(paymentMethodId) {
+    const response = await fetch("/stripe/update-payment-method", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
+      },
+      body: JSON.stringify({
+        paymentMethodId: paymentMethodId,
+        paymentIntentId: this.clientSecret.split("_secret_")[0],
+        productId: this.prodId
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update payment method");
+    }
+
+    return await response.json();
   }
 }

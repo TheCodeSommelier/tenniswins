@@ -9,6 +9,7 @@ module Stripe
       price = Stripe::Price.retrieve(product.default_price)
       recurring = (price.recurring&.interval == 'month') || false
       amount = price.unit_amount.to_f / 100
+
       client_secret = create_payment_intent(price, product, recurring)
 
       render json: { client_secret:, requires_action: false, amount:, recurring: }
@@ -29,7 +30,7 @@ module Stripe
                                     customer: stripe_cus_id,
                                     items: [{ price: price.id }],
                                     currency: 'usd',
-                                    expand: ['latest_invoice.payment_intent'],
+                                    expand: ['latest_invoice.payment_intent']
                                   })
       head :ok
     rescue Stripe::StripeError => e
@@ -37,6 +38,24 @@ module Stripe
     end
 
     def success; end
+
+    def update_payment_method
+      product = Stripe::Product.retrieve(params[:productId])
+      price = Stripe::Price.retrieve(product.default_price)
+      recurring = (price.recurring&.interval == 'month') || false
+
+      updated_intent = Stripe::PaymentIntent.update(
+        params[:paymentIntentId],
+        {
+          payment_method: params[:paymentMethodId],
+          metadata: { product_id: product.id, price_id: price.id, recurring: }
+        }
+      )
+
+      render json: { client_secret: updated_intent.client_secret }
+    rescue Stripe::StripeError => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    end
 
     private
 
@@ -59,7 +78,9 @@ module Stripe
                                                       customer: current_user.stripe_customer_id,
                                                       amount: price.unit_amount,
                                                       currency: price.currency,
-                                                      payment_method_types: ['card'],
+                                                      automatic_payment_methods: {
+                                                        enabled: true
+                                                      },
                                                       metadata: { product_id: product.id, price_id: price.id,
                                                                   recurring: },
                                                       setup_future_usage: recurring ? 'off_session' : nil

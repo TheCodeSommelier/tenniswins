@@ -28,6 +28,7 @@
   }
 
   &--outline {
+    @extend .c-button;
     color: $primary-color;
     font-size: 1rem;
     border: 2px solid $primary-color;

@@ -1,16 +1,22 @@
-.checkout-cont {
+.c-checkout {
   @include flex-center;
   flex-direction: column;
 
-  #payment-element {
+  &__payment-element {
     margin-top: 1rem;
   }
 
-  .security-message {
+  &__error-messages {
+    font-family: $content-font;
+    color: $s-danger;
+    padding: 1rem;
+    width: fit-content;
+  }
+
+  &__security-message {
     font-style: italic;
     color: rgb(153, 153, 153);
     text-align: left;
-    margin-top: 1rem;
   }
 
   .c-button {

@@ -1,43 +1,43 @@
-<div id="c-home" class="u-c-content">
+<div class="c-home u-c-content">
 
   <!-- Main Section -->
-  <section id="main">
-    <div class="marketing-slinty">
+  <section class="s-main">
+    <div class="s-main__marketing-section">
       <h1>Unlock Daily Tennis Picks Backed by <span class="u-highlight-prim">Expert Research</span> and <span class="u-highlight-prim">AI Precision</span></h1>
       <p>
         Our team of experts and advanced AI deliver carefully curated tennis picks designed for consistent, steady returns.
         Join TennisWins today and elevate your betting strategy with insights you can trust.
       </p>
-      <div class="cta-buttons">
+      <div class="s-main__cta-buttons">
         <%= link_to 'Sign up', new_user_registration_path, class: "c-button--outline" %>
         <%= link_to 'Picks', admin_bets_path, class: "c-button" %>
       </div>
     </div>
 
-    <div class="picks-display">
-      <div class="winning-c">
+    <div class="s-main__picks-display">
+      <div class="s-main__c-marketing">
         <h2 class="title-abs">Won bets</h2>
         <h2 class="winning"><%= @number_won_bets %></h2>
       </div>
-      <div class="amount-made-c">
+      <div class="s-main__c-marketing">
         <h2 class="title-abs">Made for betters</h2>
         <h2 class="amount-made">$<%= @money_made %></h2>
       </div>
-      <p class="base-calculation-p"># Calculated at $100 bet</p>
+      <p class="u-base-calculation"># Calculated at $100 bet</p>
     </div>
   </section>
 
   <!-- How It Works Section -->
-  <section id="how-it-works" data-controller="landing-page">
-    <h2 class="section-title">How It Works</h2>
-    <div class="how-it-works-container">
-      <div class="steps-container">
-        <p class="step active" id="step-1" data-action="click->landing-page#changeStep">Step 1 - Create a Free Account</p>
-        <p class="step" id="step-2" data-action="click->landing-page#changeStep">Step 2 - Upgrade to Our Paid Membership</p>
-        <p class="step" id="step-3" data-action="click->landing-page#changeStep">Step 3 - Receive Daily Picks</p>
+  <section class="s-how-works" data-controller="landing-page">
+    <h2 class="u-section-title">How It Works</h2>
+    <div class="s-how-works__c-how-works">
+      <div class="s-how-works__c-steps">
+        <p class="s-how-works__step active" id="step-1" data-action="click->landing-page#changeStep">Step 1 - Create a Free Account</p>
+        <p class="s-how-works__step" id="step-2" data-action="click->landing-page#changeStep">Step 2 - Upgrade to Our Paid Membership</p>
+        <p class="s-how-works__step" id="step-3" data-action="click->landing-page#changeStep">Step 3 - Receive Daily Picks</p>
       </div>
-      <div class="step-desc-container">
-        <p class="step-desc" data-landing-page-target="stepDesc">
+      <div class="s-how-works__c-step-desc">
+        <p data-landing-page-target="stepDesc">
           Sign up with a free account to explore our historical data and gain access to our community channels on Discord/Telegram.
           See how our picks have performed over time and evaluate the quality of our insights.
         </p>
@@ -46,32 +46,32 @@
   </section>
 
   <!-- Why Us Section -->
-  <section id="why-us">
-    <h2 class="section-title">Why Choose Us?</h2>
-    <div class="why-us-grid">
-      <h3 class="w-u-item">Expert Insights & AI-Driven Analysis</h3>
-      <p class="w-u-item">Our team of seasoned tennis experts conducts in-depth research on every matchup, considering player form, head-to-head records, and even personal factors. This human expertise is then enhanced by our advanced AI system, which cross-references data points to identify the highest probability outcomes.</p>
+  <section class="s-why-us">
+    <h2 class="u-section-title">Why Choose Us?</h2>
+    <div class="s-why-us__grid">
+      <h3 class="s-why-us__example">Expert Insights & AI-Driven Analysis</h3>
+      <p class="s-why-us__example">Our team of seasoned tennis experts conducts in-depth research on every matchup, considering player form, head-to-head records, and even personal factors. This human expertise is then enhanced by our advanced AI system, which cross-references data points to identify the highest probability outcomes.</p>
 
-      <h3 class="w-u-item">Daily Picks Delivered to You</h3>
-      <p class="w-u-item">Never miss an opportunity. Our picks are delivered straight to your inbox every morning and are also available in our members-only section, so you’re always ready to make your move.</p>
+      <h3 class="s-why-us__example">Daily Picks Delivered to You</h3>
+      <p class="s-why-us__example">Never miss an opportunity. Our picks are delivered straight to your inbox every morning and are also available in our members-only section, so you’re always ready to make your move.</p>
 
-      <h3 class="w-u-item">Tailored for Serious Bettors</h3>
-      <p class="w-u-item">We cater to those who are serious about making informed betting decisions. Whether you're placing $50 per pick or more, our service is designed to help you achieve long-term success.</p>
+      <h3 class="s-why-us__example">Tailored for Serious Bettors</h3>
+      <p class="s-why-us__example">We cater to those who are serious about making informed betting decisions. Whether you're placing $50 per pick or more, our service is designed to help you achieve long-term success.</p>
 
-      <h3 class="w-u-item">Consistent, Reliable Picks</h3>
-      <p class="w-u-item">We’re not about chasing high-risk, high-reward odds. Our picks focus on consistency, with odds typically around 2.00, offering you a balanced approach that’s designed to deliver steady returns over time.</p>
+      <h3 class="s-why-us__example">Consistent, Reliable Picks</h3>
+      <p class="s-why-us__example">We’re not about chasing high-risk, high-reward odds. Our picks focus on consistency, with odds typically around 2.00, offering you a balanced approach that’s designed to deliver steady returns over time.</p>
     </div>
   </section>
 
   <!-- Pricing Section -->
-  <section id="pricing-section">
-    <h2 class="section-title">Pricing</h2>
-    <div id="pricing">
+  <section class="s-pricing">
+    <h2 class="u-section-title">Pricing</h2>
+    <div class="s-pricing__c-pricing">
       <!-- Pricing Plan Unit -->
-      <div class="p-container one-time">
+      <div class="s-pricing__plan">
         <h2>$14.99 / one time fee</h2>
-        <div class="plan-cont">
-          <ul class="features">
+        <div class="s-pricing__plan-feats">
+          <ul>
             <li>Access to Historical Picks and Data</li>
             <li>Access to Discord / Telegram</li>
             <li>Access to Daily Picks in Members Section for that day</li>
@@ -81,10 +81,10 @@
         </div>
       </div>
 
-      <div class="p-container monthly" id="monthly">
+      <div class="s-pricing__plan--monthly">
         <h2>$99.99 / monthly</h2>
-        <div class="plan-cont">
-          <ul class="features">
+        <div class="s-pricing__plan-feats">
+          <ul>
             <li>Access to Historical Picks and Data</li>
             <li>Access to Discord / Telegram</li>
             <li>Access to Daily Picks in Members Section</li>
@@ -93,10 +93,10 @@
         </div>
       </div>
 
-      <div class="p-container one-time">
+      <div class="s-pricing__plan">
         <h2>$39.99 / one time fee</h2>
-        <div class="plan-cont">
-          <ul class="features">
+        <div class="s-pricing__plan-feats">
+          <ul>
             <li>Access to Historical Picks and Data</li>
             <li>Access to Discord / Telegram</li>
             <li>Access to Daily Picks in Members Section for a week</li>
@@ -105,29 +105,18 @@
           <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_15_PICKS')), class: "c-button--outline" %>
         </div>
       </div>
-
-      <!--<div class="p-container free">
-        <h2>Free</h2>
-        <div class="plan-cont">
-          <ul class="features">
-            <li>Access to Historical Picks and Data</li>
-            <li>Access to Discord / Telegram</li>
-          </ul>
-          <%#= button_to 'Sign up', root_path, class: "c-button--outline" %>
-        </div>
-      </div>-->
     </div>
   </section>
 
   <!-- Success Stories Section -->
-  <section id="success-stories">
-    <h2 class="section-title">Success Stories</h2>
-    <p class="subtitle">Below are some nice messages some of our team have received.</p>
-    <div class="messages-grid">
+  <section class="s-success-stories">
+    <h2 class="u-section-title">Success Stories</h2>
+    <p class="s-success-stories__subtitle">Below are some nice messages some of our team have received.</p>
+    <div class="s-success-stories__grid">
       <% 6.times do %>
-        <div class="message-placeholder"></div>
+        <div></div>
       <% end %>
     </div>
-    <%= link_to 'Sign up', new_user_registration_path, class: "c-button c-button-success-sec" %>
+    <%= link_to 'Sign up', new_user_registration_path, class: "c-button" %>
   </section>
 </div>

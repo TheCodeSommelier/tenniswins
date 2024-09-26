@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BetsMailer < ApplicationMailer
   def new_picks_email(user)
     @user = user

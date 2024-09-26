@@ -18,7 +18,7 @@ module Admin
 
       # Analyze each group of bets (either single bets or parlays)
       @grouped_bets.each do |group|
-        if group.all? { |bet| bet.won }
+        if group.all?(&:won)
           @won_bets_count += 1
         elsif group.any? { |bet| !bet.won || bet.won.nil? }
           # Count as lost if any of the bets in the group are lost or nil
@@ -160,7 +160,8 @@ module Admin
         else
           current_user.user_bets.create(bet:)
         end
-        redirect_to admin_bets_path, notice: "Bet unlocked! Your current credit balance is => #{current_user.credits} credits"
+        redirect_to admin_bets_path,
+                    notice: "Bet unlocked! Your current credit balance is => #{current_user.credits} credits"
       else
         redirect_to admin_bets_path, alert: "You don't have enough credits..."
       end
@@ -175,7 +176,10 @@ module Admin
     def bets_params
       params.require(:bets).permit!.tap do |whitelisted|
         whitelisted.each do |key, value|
-          whitelisted[key] = value.permit(:name, :pick, :eu_odds, :us_odds, :betId) if value.is_a?(ActionController::Parameters)
+          if value.is_a?(ActionController::Parameters)
+            whitelisted[key] =
+              value.permit(:name, :pick, :eu_odds, :us_odds, :betId)
+          end
         end
       end
     end
@@ -184,14 +188,14 @@ module Admin
       single_bet_money_made = Bet.where(won: true, parlay_group: nil).sum('100 * (eu_odds - 1)')
 
       parlay_money_made = Bet.where(won: true).where.not(parlay_group: nil)
-                            .group(:parlay_group)
-                            .pluck(:parlay_group)
-                            .sum do |group|
-                              total_odds = Bet.where(parlay_group: group).pluck(:eu_odds).reduce(1) do |product, eu_odds|
-                                product * eu_odds
-                              end
-                              100 * (total_odds - 1)
-                            end
+                             .group(:parlay_group)
+                             .pluck(:parlay_group)
+                             .sum do |group|
+        total_odds = Bet.where(parlay_group: group).pluck(:eu_odds).reduce(1) do |product, eu_odds|
+          product * eu_odds
+        end
+        100 * (total_odds - 1)
+      end
 
       (single_bet_money_made + parlay_money_made).to_i
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersMailer < ApplicationMailer
   def welcome_new_user(user)
     email = user.email
@@ -9,7 +11,7 @@ class UsersMailer < ApplicationMailer
     )
   end
 
-  def send_reciept(user, invoice_id)
+  def send_receipt(user, invoice_id)
     email = user.email
     @name = user.first_name
 

@@ -7,9 +7,7 @@ export default class extends Controller {
   connect() {}
 
   changeStep(event) {
-    const oldStep = document
-      .getElementById("how-it-works")
-      .querySelector(".active");
+    const oldStep = this.element.querySelector(".active");
     const clickedStep = event.currentTarget;
     const stepNumber = clickedStep.id.split("-")[1];
     const newText = this.getStepDescription(stepNumber);

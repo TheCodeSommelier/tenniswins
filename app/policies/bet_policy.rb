@@ -49,7 +49,7 @@ class BetPolicy < ApplicationPolicy
 
   # Checks if the user has unlocked the bet
   def user_has_unlocked_bet?
-    UserBet.where(user: user, bet: record).exists?
+    UserBet.where(user:, bet: record).exists?
   end
 
   class Scope < ApplicationPolicy::Scope

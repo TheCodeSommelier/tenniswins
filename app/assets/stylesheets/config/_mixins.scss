@@ -25,6 +25,12 @@
   }
 }
 
+@mixin respond-to($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
 @mixin menu-item {
   list-style-type: none;
   text-decoration: none;

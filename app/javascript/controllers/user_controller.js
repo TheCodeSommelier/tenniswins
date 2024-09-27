@@ -2,33 +2,24 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="user"
 export default class extends Controller {
-  static targets = ["userMenu"];
+  static targets = ["menu"]
 
-  connect() {}
-
-  toggleMenu() {
-    const isActive = this.userMenuTarget.dataset.active === 'true';
-    this.userMenuTarget.style.display = isActive ? "none" : "flex";
-    this.userMenuTarget.dataset.active = !isActive;
-
-    if (!isActive) {
-      document.addEventListener('click', this.#handleOutsideClick.bind(this));
-    } else {
-      document.removeEventListener('click', this.#handleOutsideClick.bind(this));
-    }
+  toggle() {
+    this.menuTarget.classList.toggle("is-active");
   }
 
-  // Private
-
-  #handleOutsideClick(event) {
+  // Close the dropdown when clicking outside
+  clickOutside(event) {
     if (!this.element.contains(event.target)) {
-      this.#hideMenu();
+      this.menuTarget.classList.remove("is-active");
     }
   }
 
-  #hideMenu() {
-    this.userMenuTarget.style.display = "none";
-    this.userMenuTarget.dataset.active = false;
-    document.removeEventListener('click', this.#handleOutsideClick.bind(this));
+  connect() {
+    document.addEventListener("click", this.clickOutside.bind(this));
+  }
+
+  disconnect() {
+    document.removeEventListener("click", this.clickOutside.bind(this));
   }
 }

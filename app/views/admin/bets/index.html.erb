@@ -1,3 +1,4 @@
+<!-- HTML -->
 <div class="c-dashboard u-c-content" data-controller="chart" data-chart-won-bets-value="<%= @won_bets_count %>" data-chart-lost-bets-value="<%= @lost_bets_count %>">
   <% if current_user.admin? %>
     <div class="c-dashboard__buttons-cont">
@@ -6,19 +7,17 @@
       <% end %>
     </div>
   <% end %>
-
-
-  <div class="c-dashboard__c-cards-chart">
-    <div class="c-dashboard__c-cards">
+  <div class="c-dashboard__content">
+    <div class="c-dashboard__cards">
       <% @paginated_groups.each do |bets| %>
-        <%= render 'shared/pick_and_parlay_card', bets: %>
+        <%= render 'shared/pick_and_parlay_card', bets: bets %>
       <% end %>
-
       <%= paginate @paginated_groups, params: request.query_parameters %>
     </div>
-
-    <div class="c-dashboard__c-chart">
-      <canvas id="betsPieChart" width="400" height="400"></canvas>
+    <div class="c-dashboard__chart-section">
+      <div class="c-dashboard__chart">
+        <canvas id="betsPieChart" width="400" height="400"></canvas>
+      </div>
       <div class="c-dashboard__money-display">
         <p class="c-dashboard__desc-money-value">Made for betters</p>
         <p class="c-dashboard__money-value">$<%= @money_made %></p>

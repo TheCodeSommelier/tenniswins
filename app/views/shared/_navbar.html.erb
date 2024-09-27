@@ -1,44 +1,42 @@
-<div id="navbar">
-  <%= link_to root_path do %>
-    <%= image_tag 'logo_white.png', class: 'logo-image' %>
+<nav class="navbar" data-controller="navbar">
+  <%= link_to root_path, class: "navbar__logo-link" do %>
+    <%= image_tag 'logo_white.png', class: 'navbar__logo' %>
   <% end %>
-  <div class="menu">
-    <%= link_to 'Home', root_path, class: "nav-link" %>
-    <%= link_to 'How it works', root_path(anchor: 'how-it-works'), class: "nav-link" %>
 
+  <div class="navbar__menu" data-navbar-target="menu">
+    <%= link_to 'Home', root_path, class: "navbar__link" %>
+    <%= link_to 'How it works', root_path(anchor: 'how-it-works'), class: "navbar__link" %>
     <% unless user_signed_in? %>
       <%= link_to "Sign up", new_user_registration_path, class: "c-button--outline" %>
     <% end %>
-
     <% if policy(Bet).index? %>
       <%= link_to "Picks", admin_bets_path, class: "c-button" %>
     <% else %>
       <%= link_to 'Sign in', new_user_session_path, class: "c-button" %>
     <% end %>
 
-    <% if user_signed_in? %>
-      <div class="account" data-controller="user" data-action="click->user#toggleMenu">
-        <div class="user">
-          <%= icon('fa-solid', 'user') %>
+    <div class="navbar__user-section">
+      <% if user_signed_in? %>
+        <% if current_user.premium %>
+          <div class="navbar__credits"><%= icon('fa-solid', 'coins') %> <span class="u-highlight-prim">&infin;</span></div>
+        <% else %>
+          <div class="navbar__credits"><%= icon('fa-solid', 'coins') %> <span class="u-highlight-prim"><%= current_user.credits %></span></div>
+        <% end %>
+        <div class="navbar__user-dropdown" data-controller="user">
+          <button class="navbar__user-toggle" data-action="click->user#toggle">
+            <%= icon('fa-solid', 'user') %>
+          </button>
+          <div class="navbar__user-menu" data-user-target="menu">
+            <div class="navbar__user-email"><span class="u-highlight-prim"><%= current_user.email %></span></div>
+            <%= link_to 'Edit account', edit_user_registration_path(current_user), class: "navbar__user-menu-item" %>
+            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar__user-menu-item" %>
+          </div>
         </div>
-        <div id="user-menu" style="display: none;" data-user-target="userMenu" data-active="false">
-          <ul>
-            <li class="user-menu-item"><%= link_to 'Edit account', edit_user_registration_path(current_user) %></li>
-            <li class="user-menu-item"><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %></li>
-            <% if current_user.premium %>
-              <li class="credits"><%= icon('fa-solid', 'coins') %> Credits: <span class="u-highlight-prim">&infin;</span></li>
-            <% else %>
-              <li class="credits"><%= icon('fa-solid', 'coins') %> Credits: <span class="u-highlight-prim"><%= current_user.credits %></span></li>
-            <% end %>
-            <li class="user-email"><span class="u-highlight-prim"><%= current_user.email %></span></li>
-          </ul>
-        </div>
-      </div>
-    <% end %>
-    <% if user_signed_in? && current_user.premium %>
-      <li class="credits-nav"><%= icon('fa-solid', 'coins') %> <span class="u-highlight-prim">&infin;</span></li>
-    <% elsif user_signed_in? && !current_user.premium %>
-      <li class="credits-nav"><%= icon('fa-solid', 'coins') %> <span class="u-highlight-prim"><%= current_user.credits %></span></li>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+
+  <button class="navbar__toggle" data-action="click->navbar#toggleMenu" aria-label="Toggle menu">
+    <%= icon('fa-solid', 'bars') %>
+  </button>
+</nav>

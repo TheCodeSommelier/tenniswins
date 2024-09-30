@@ -1,32 +1,24 @@
-#new-session-container {
-  height: 100vh;
-  width: 100%;
-  @include flex-center;
+.c-new-session {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  margin-top: 3rem;
 
-  form {
+  &__log-in-form {
     width: 25%;
-    @include flex-center;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 20px;
-  }
 
-  input:not(input[type="checkbox"], input[type="submit"]) {
-    width: 20vw;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   .c-button {
     height: 48px;
-    width: 20vw;
-  }
-
-  .checkbox-cont {
-    display: flex;
-    align-items: center;
-    align-self: start;
-
-    label {
-      margin: 0;
-    }
+    width: 100%;
   }
 }

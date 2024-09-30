@@ -1,11 +1,6 @@
 #new-bets-cont, #edit-bets-cont {
   padding: 0 9rem;
 
-  .field {
-    display: flex;
-    flex-direction: column;
-  }
-
   input[type="submit"] {
     height: 48px;
     margin-top: 1rem;

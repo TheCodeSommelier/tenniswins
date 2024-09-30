@@ -4,6 +4,17 @@
   align-items: center;
 }
 
+@mixin flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin result-status($color) {
   background-color: rgba($color, 0.5);
   border: solid 1px $color;

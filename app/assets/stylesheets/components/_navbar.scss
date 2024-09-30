@@ -28,10 +28,10 @@
 
   &__menu {
     position: fixed;
-    top: 60px;
+    top: 100px;
     left: -100%;
     width: 80%;
-    height: calc(100vh - 60px);
+    height: calc(100vh + 100px);
     background-color: $bg-color;
     transition: left 0.3s ease-in-out;
     overflow-y: auto;
@@ -86,7 +86,7 @@
     cursor: pointer;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 100%;
     border: 2px solid $primary-color;
     display: flex;
     align-items: center;
@@ -139,8 +139,6 @@
   .c-button,
   .c-button--outline {
     margin: 1rem 0;
-    width: 100%;
-    text-align: center;
   }
 
   @media (min-width: 820px) {

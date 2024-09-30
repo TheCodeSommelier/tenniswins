@@ -1,41 +1,67 @@
 .pagination {
+  @include flex-center;
+  flex-wrap: wrap;
   margin-top: 1rem;
-  display: flex;
-  align-items: center;
 
-  span {
+  &__page-link, &__gap {
     @include flex-center;
-  }
-
-  .pagination-link {
-    text-align: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.5rem;
     border: 2px solid $primary-color;
-    padding: 1rem;
+    color: $primary-color;
     font-weight: 700;
-  }
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
-  .gap {
-    @extend .pagination-link;
-  }
-
-  .page a, .next a, .last a, .prev a, .first a {
-    @extend .pagination-link;
-    transition: 0.3s ease-in-out;
-
-    &:hover {
+    &:hover, &:focus {
       background-color: $primary-color;
-      transition: 0.3s ease-in-out;
       color: $font-dark;
-      transition: 0.3s ease-in-out;
-      font-weight: 700;
     }
   }
 
-  .current {
-    color: $font-dark;
+  &__page a, &__first a, &__prev a, &__next a, &__last a {
+    @extend .pagination__page-link;
+    padding: 0.25rem;
+  }
+
+
+  &__current {
+    @extend .pagination__page-link;
+    padding: 0.25rem;
     background-color: $primary-color;
-    font-weight: 700;
-    border: 2px solid $primary-color;
-    padding: 1rem;
+    color: $font-dark;
+  }
+
+  &__gap {
+    border: none;
+    padding: 0 0.25rem;
+  }
+
+  @media (max-width: 768px) {
+    &__page {
+      display: none;
+    }
+
+    &__current, &__prev, &__next {
+      display: flex;
+    }
+
+    &__first, &__last {
+      display: none;
+    }
+
+    &__page-link {
+      min-width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__page-link {
+      min-width: 2rem;
+      height: 2rem;
+      font-size: 0.875rem;
+    }
   }
 }

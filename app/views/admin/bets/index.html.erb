@@ -12,11 +12,12 @@
       <% @paginated_groups.each do |bets| %>
         <%= render 'shared/pick_and_parlay_card', bets: bets %>
       <% end %>
-      <%= paginate @paginated_groups, params: request.query_parameters %>
+      <%#= paginate @paginated_groups, params: request.query_parameters %>
+      <%= paginate @paginated_groups, window: 2, outer_window: 1, class: 'pagination', params: { anchor: 'pagination' } %>
     </div>
     <div class="c-dashboard__chart-section">
       <div class="c-dashboard__chart">
-        <canvas id="betsPieChart" width="400" height="400"></canvas>
+        <canvas id="betsPieChart"></canvas>
       </div>
       <div class="c-dashboard__money-display">
         <p class="c-dashboard__desc-money-value">Made for betters</p>

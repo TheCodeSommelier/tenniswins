@@ -17,6 +17,10 @@ html, body {
   margin: 0;
   scroll-behavior: smooth;
   padding-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    padding-bottom: 1rem;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -84,10 +88,10 @@ input[type="checkbox"] {
   appearance: none;
   border: 1px solid $primary-color;
   position: relative;
+  margin: 0;
 
   &:checked {
     background-color: rgba($color: $primary-color, $alpha: 1.0);
-    border: none;
     color: $font-dark;
 
     &::after {
@@ -134,25 +138,14 @@ input[type="password"], input[type="password"]::placeholder {
   letter-spacing: 3px;
 }
 
-.name-inputs {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+.u-name-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   width: 100%;
 
-  .field {
-    width: calc(50% - 2rem);
-  }
-}
-
-.field_with_errors {
-  width: 100%;
-  display: block;
-
-  input {
-    border: 1px solid $s-danger;
-    box-shadow: 0 0 1rem $s-danger;
-    width: 100%;
+  @media (max-width: 768px) {
+    gap: 0;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -166,4 +159,27 @@ button, a {
   font-style: italic;
   color: lightgrey;
   font-size: $font-size-xs-min;
+}
+
+.u-form-group {
+  width: 100%;
+  margin-bottom: 1rem;
+  @include flex-column;
+  box-sizing: border-box;
+}
+
+.u-form-label {
+  display: block;
+}
+
+.u-checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  label {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
 }

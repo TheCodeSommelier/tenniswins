@@ -1,25 +1,24 @@
-<div id="new-session-container">
-  <h2>Log in</h2>
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "log-in-form") do |f| %>
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="c-new-session u-c-content">
+  <h1>Log in</h1>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "c-new-session__log-in-form" }) do |f| %>
+    <div class="u-form-group">
+      <%= f.label :email, class: "u-form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@example.com" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="u-form-group">
+      <%= f.label :password, class: "u-form-label" %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "••••••••" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field checkbox-cont">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+      <div class="u-checkbox-group">
+        <%= f.check_box :remember_me, class: "form-checkbox" %>
+        <%= f.label :remember_me, class: "form-label-inline" %>
       </div>
     <% end %>
 
-    <div class="actions">
+    <div class="u-form-group">
       <%= f.submit "Log in", class: "c-button" %>
     </div>
   <% end %>

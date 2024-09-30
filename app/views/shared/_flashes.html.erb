@@ -1,27 +1,27 @@
 <% if flash[:notice] %>
-  <div class="c-flash--success">
-    <button class="c-button" onclick="closeFlash()">x</button>
+  <div class="c-flash--success" id="flash">
     <% Array(flash[:notice]).each do |msg| %>
       <p><%= msg %></p>
     <% end %>
+    <button class="c-button" onclick="closeFlash()"><%= icon('fa-solid', 'xmark') %></button>
   </div>
 <% end %>
 
 <% if flash[:alert] %>
-  <div class="c-flash--alert">
-    <button class="c-button" onclick="closeFlash()">x</button>
+  <div class="c-flash--alert" id="flash">
     <h3>Please correct the following issues:</h5>
     <ul>
       <% Array(flash[:alert]).each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
+    <button class="c-button" onclick="closeFlash()"><%= icon('fa-solid', 'xmark') %></button>
   </div>
 <% end %>
 
 <script>
   function closeFlash() {
-    const flashMessage = document.querySelector(".c-flash");
+    const flashMessage = document.getElementById("flash");
     flashMessage.remove()
   }
 </script>

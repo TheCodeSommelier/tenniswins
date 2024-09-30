@@ -34,6 +34,7 @@ export default class extends Controller {
         }]
       },
       options: {
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             labels: {

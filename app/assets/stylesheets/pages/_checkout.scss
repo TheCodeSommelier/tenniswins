@@ -2,6 +2,10 @@
   @include flex-center;
   flex-direction: column;
 
+  h1 {
+    @include responsive-font($font-size-xxl-min, $font-size-xxl-max);
+  }
+
   &__payment-element {
     margin-top: 1rem;
   }

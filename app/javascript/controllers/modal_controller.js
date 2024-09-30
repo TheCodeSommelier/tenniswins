@@ -2,9 +2,8 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-
   connect() {
-    this.modal = document.querySelector("#modal");
+    this.modal = this.element.querySelector("#modal");
   }
 
   showModal() {
@@ -12,6 +11,6 @@ export default class extends Controller {
   }
 
   hideModal() {
-    this.modal.style.display = "none"
+    this.element.style.display = "none";
   }
 }

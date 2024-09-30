@@ -32,9 +32,11 @@ module Stripe
                                     currency: 'usd',
                                     expand: ['latest_invoice.payment_intent']
                                   })
-      head :ok
+
+      render json: { status: 'success' }, status: :ok
     rescue Stripe::StripeError => e
       Rails.logger.error "🛑 Stripe error while creating subscription: #{e.message}"
+      render json: { status: 'error', message: e.message }, status: :unprocessable_entity
     end
 
     def success; end

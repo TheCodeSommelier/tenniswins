@@ -6,6 +6,10 @@
   width: 25%;
   z-index: 10;
 
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+
   li {
     margin: 0.5rem 1rem;
   }
@@ -13,7 +17,10 @@
   .c-button {
     padding: 0.2rem 0.5rem;
     position: relative;
-    left: 93%;
+
+    i {
+      margin: 0;
+    }
   }
 
   &--success {
@@ -22,8 +29,8 @@
     border: solid 2px $primary-color;
     color: $font-light;
     display: flex;
-    align-items: center;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: space-between;
   }
 
   &--alert {

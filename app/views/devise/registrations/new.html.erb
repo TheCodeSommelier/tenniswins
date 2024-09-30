@@ -1,29 +1,26 @@
-
-<div id="registration-container">
+<div class="c-registration u-c-content">
   <h2>Sign up</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "c-registration__registration-form" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="name-inputs">
-      <div class="field">
-        <%= f.label :first_name %>
+    <div class="u-name-inputs">
+      <div class="u-form-group">
+        <%= f.label :first_name, class: "u-form-label" %>
         <%= f.text_field :first_name, placeholder: "John" %>
       </div>
-
-      <div class="field">
-        <%= f.label :last_name %>
+      <div class="u-form-group">
+        <%= f.label :last_name, class: "u-form-label" %>
         <%= f.text_field :last_name, placeholder: "Doe" %>
       </div>
     </div>
 
-    <div class="field">
-      <%= f.label :email %>
+    <div class="u-form-group">
+      <%= f.label :email, class: "u-form-label" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@example.com" %>
     </div>
 
-    <div class="field">
-      <label for="user_password">Password
+    <div class="u-form-group">
+      <label for="user_password" class="u-form-label">Password
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
@@ -31,15 +28,14 @@
       <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %>
+    <div class="u-form-group">
+      <%= f.label :password_confirmation, class: "u-form-label" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••" %>
     </div>
 
-    <div class="actions">
+    <div class="c-registration__actions">
       <%= f.submit "Sign up", class: "c-button" %>
+      <%= render "devise/shared/links" %>
     </div>
   <% end %>
-
-  <%= render "devise/shared/links" %>
 </div>

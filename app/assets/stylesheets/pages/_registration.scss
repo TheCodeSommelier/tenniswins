@@ -1,46 +1,32 @@
-#registration-container {
-  width: 100%;
-  @include flex-center;
+.c-registration, .c-edit-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 
-  form {
-    @include flex-center;
+  &__registration-form {
+    display: flex;
     flex-direction: column;
-    width: 50%;
+    align-items: center;
+    width: 65%;
   }
 
-  .field, input {
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  &__actions {
+    @include flex-center;
     width: 100%;
-  }
 
-  .field {
-    @include flex-center;
-    flex-direction: column;
-    margin: 1rem auto 0.5rem;
-
-    label {
-      width: 100%;
-      text-align: left;
+    a, .button_to {
+      width: calc(50% - 1rem);
+      margin-left: 0.5rem;
     }
   }
 
-  h3 {
-    margin: 1rem auto;
-  }
-
-  .cancel-button-div {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-  }
-
-  .actions {
-    @include flex-center;
-    width: 100%;
-  }
-
-  .c-button {
-    height: 3rem;
-    width: 75%;
+  input[type="submit"] {
+    width: calc(50% - 1rem);
+    margin-right: 0.5rem;
   }
 }

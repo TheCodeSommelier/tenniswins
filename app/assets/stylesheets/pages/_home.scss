@@ -11,6 +11,10 @@ $pricing-max-width: 300px;
 
   section {
     margin-top: 7rem;
+
+    @media (max-width: 768px) {
+      margin-top: 2rem;
+    }
   }
 
   .u-section-title {
@@ -23,10 +27,11 @@ $pricing-max-width: 300px;
   .s-main {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 40px;
 
     @media (max-width: 768px) {
+      text-align: center;
       flex-direction: column;
     }
 
@@ -36,6 +41,11 @@ $pricing-max-width: 300px;
 
     &__marketing-section {
       width: 50%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+
       h1 {
         @include responsive-font($font-size-xl-min, $font-size-xl-max);
         margin-bottom: 1rem;
@@ -52,6 +62,11 @@ $pricing-max-width: 300px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     &__c-marketing {
@@ -64,7 +79,7 @@ $pricing-max-width: 300px;
       border-radius: 8px;
 
       h2 {
-        @include responsive-font($font-size-xxl-min, $font-size-xxl-max);
+        @include responsive-font($font-size-xl-min, $font-size-xl-max);
         margin-top: 1rem;
         color: $bg-color;
       }
@@ -76,6 +91,11 @@ $pricing-max-width: 300px;
       gap: 30px;
       align-items: flex-end;
       width: 50%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        align-items: center;
+      }
     }
   }
 
@@ -83,6 +103,7 @@ $pricing-max-width: 300px;
   .s-how-works {
     &__c-how-works {
       display: flex;
+      align-items: center;
       border: 2px solid $primary-color;
       padding: 3rem;
       border-radius: 8px;
@@ -99,7 +120,7 @@ $pricing-max-width: 300px;
       border-right: 1px solid lightgrey;
       padding: 0.3rem;
 
-      @include respond-to(768px) {
+      @media (max-width: 768px) {
         border-right: none;
         border-bottom: 1px solid lightgrey;
         margin-bottom: 1rem;
@@ -151,6 +172,18 @@ $pricing-max-width: 300px;
         border-right: 2px solid $primary-color;
         width: 100%;
         font-weight: 400;
+      }
+
+      @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+          border-bottom: 2px solid $primary-color;
+          padding-bottom: 15px;
+          padding-right: 0;
+          border-right: none;
+        }
       }
     }
 
@@ -271,10 +304,6 @@ $pricing-max-width: 300px;
       margin: 1rem auto;
       text-align: center;
       @include responsive-font($font-size-sm-min, $font-size-sm-max);
-
-      @include respond-to(768px) {
-        width: 100%;
-      }
     }
   }
 }

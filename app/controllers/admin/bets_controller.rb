@@ -15,13 +15,14 @@ module Admin
       # Initialize counters
       @won_bets_count = 0
       @lost_bets_count = 0
+      @no_result_bets = 0
 
       # Analyze each group of bets (either single bets or parlays)
       @grouped_bets.each do |group|
         if group.all?(&:won)
           @won_bets_count += 1
-        elsif group.any? { |bet| !bet.won || bet.won.nil? }
-          # Count as lost if any of the bets in the group are lost or nil
+        elsif group.any? { |bet| bet.won == false }
+          # Count as lost if any of the bets in the group are lost
           @lost_bets_count += 1
         end
       end

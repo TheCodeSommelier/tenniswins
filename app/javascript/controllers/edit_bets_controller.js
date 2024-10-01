@@ -5,6 +5,11 @@ import BetFormBuilder from "modules/bet_form_builder";
 // Connects to data-controller="edit-bets"
 export default class extends Controller {
   async connect() {
+    if (document.documentElement.hasAttribute('data-turbo-preview')) {
+      return;
+    }
+    console.log("Hi");
+
     this.formUtils = new FormUtils();
     this.betFormBuilder = new BetFormBuilder(this.formUtils);
     this.#fetchBetData();
@@ -30,7 +35,7 @@ export default class extends Controller {
     for (let i = 0; i < data.matches.length; i++) {
       this.betFormBuilder.buildBetForm();
     }
-    this.#buildHiddenIdInputs(data)
+    this.#buildHiddenIdInputs(data);
   }
 
   #fillDataInputs(data) {
@@ -41,11 +46,13 @@ export default class extends Controller {
     const usOddsInputs = Array.from(
       document.querySelectorAll(".us-odds-input")
     );
+    const pickInputs = Array.from(document.querySelectorAll(".pick-input"));
 
     for (let i = 0; i < data.matches.length; i++) {
       matchNameInputs[i].value = data.matches[i];
-      oddsInputs[i].value = parseFloat(data.bets[i].odds);
+      oddsInputs[i].value = parseFloat(data.bets[i].eu_odds);
       usOddsInputs[i].value = parseInt(data.bets[i].us_odds, 10);
+      pickInputs[i].value = data.bets[i].pick;
     }
   }
 

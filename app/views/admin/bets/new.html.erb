@@ -1,4 +1,4 @@
-<div id="new-bets-cont">
+<div class="c-new-bets u-c-content">
   <%= form_with model: @bet, url: admin_bets_path, data: { controller: "bets" } do |f| %>
     <button data-action="click->bets#addBetForm" class="c-button--outline" type="button">Add pick</button>
     <%= f.submit 'Create bet', class: "c-button" %>

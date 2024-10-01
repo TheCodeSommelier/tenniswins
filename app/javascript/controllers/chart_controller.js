@@ -26,7 +26,7 @@ export default class extends Controller {
           data: [wonBets, lostBets],
           backgroundColor: [
           '#C1E021',
-          '#060701'
+          '#060701',
           ],
           borderColor: ['#C1E021', '#C1E021'],
           borderWidth: 2,

@@ -16,13 +16,15 @@
       <%= paginate @paginated_groups, window: 2, outer_window: 1, class: 'pagination', params: { anchor: 'pagination' } %>
     </div>
     <div class="c-dashboard__chart-section">
-      <div class="c-dashboard__chart">
-        <canvas id="betsPieChart"></canvas>
-      </div>
-      <div class="c-dashboard__money-display">
-        <p class="c-dashboard__desc-money-value">Made for betters</p>
-        <p class="c-dashboard__money-value">$<%= @money_made %></p>
-        <p class="c-dashboard__money-base"># Calculated at 100$ bet</p>
+      <div class="c-dashboard__c-chart-money">
+        <div class="c-dashboard__chart">
+          <canvas id="betsPieChart"></canvas>
+        </div>
+        <div class="c-dashboard__money-display">
+          <p class="c-dashboard__desc-money-value">Made for betters</p>
+          <p class="c-dashboard__money-value">$<%= @money_made %></p>
+          <p class="c-dashboard__money-base"># Calculated at 100$ bet</p>
+        </div>
       </div>
     </div>
   </div>

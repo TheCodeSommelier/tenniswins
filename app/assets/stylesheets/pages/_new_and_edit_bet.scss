@@ -1,22 +1,16 @@
-#new-bets-cont, #edit-bets-cont {
-  padding: 0 9rem;
-
+.c-new-bets {
   input[type="submit"] {
     height: 48px;
     margin-top: 1rem;
   }
 
-  .odd-cont {
-    display: flex;
-    gap: 20px;
+  &__c-odd {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 
-    input {
-      width: 50%;
-    }
-
-    .pick-input {
-      width: 100%;
-      margin-right: 50px;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -50,5 +44,9 @@
 
   .c-button--outline {
     margin-top: 1rem;
+  }
+
+  .c-button {
+    width: 100%;
   }
 }

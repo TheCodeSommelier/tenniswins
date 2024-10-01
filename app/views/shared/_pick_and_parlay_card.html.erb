@@ -20,6 +20,13 @@
               <p><strong>EU odds:</strong> Content hidden <span class="c-bet-card__separator">|</span> <strong>US Odds:</strong> Content hidden</p>
             <% end %>
           </div>
+          <% unless policy(bet).view_data? %>
+            <div class="c-bet-card__cover" data-controller="modal">
+              <%= icon("fa-solid", "lock") %>
+              <%= button_tag 'Unlock bet', data: { action: "click->modal#showModal" }, class: "c-button" %>
+              <%= render "shared/modal", type: "bets", bet: bet %>
+            </div>
+          <% end %>
         <% end %>
       </div>
 
@@ -37,13 +44,8 @@
     </div>
 
     <%= render 'shared/admin_buttons', bet: bets.first if current_user.admin? %>
+
   </div>
 
   <!-- Only show cover if data should not be visible -->
-  <% unless policy(bets.first).view_data? %>
-    <div class="c-bet-card__cover">
-      <%= icon("fa-solid", "lock") %>
-      <%= button_to 'Unlock bet', admin_unlock_bet_path(bets.first), method: :patch, class: "c-button" %>
-    </div>
-  <% end %>
 </div>

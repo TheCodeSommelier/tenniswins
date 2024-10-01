@@ -9,12 +9,14 @@
 
 <% if flash[:alert] %>
   <div class="c-flash--alert" id="flash">
-    <h3>Please correct the following issues:</h5>
-    <ul>
-      <% Array(flash[:alert]).each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+    <div>
+      <h3>Please correct the following issues:</h5>
+      <ul>
+        <% Array(flash[:alert]).each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
     <button class="c-button" onclick="closeFlash()"><%= icon('fa-solid', 'xmark') %></button>
   </div>
 <% end %>

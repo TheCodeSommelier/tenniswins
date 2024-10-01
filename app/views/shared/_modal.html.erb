@@ -1,14 +1,7 @@
-<div id="modal" data-active="false" data-controller="modal" data-modal-target="modal" style="display: none;">
-  <%= form_tag admin_bets_send_daily_picks_path do %>
-    <div class="field">
-      <%= label_tag 'bets[date]', 'Date' %>
-      <%= date_field_tag 'bets[date]' %>
-    </div>
-
-    <%= submit_tag 'Send picks', class: "c-button" %>
-  <% end %>
-
-  <%= button_tag class: "c-button", data: { action: "click->modal#hideModal" } do %>
-    <%= icon("fa-solid", "close") %>
-  <% end %>
+<div class="c-modal" id="modal" data-active="false" data-controller="modal" style="display: none;">
+  <div>
+    <% if type == "bets" %>
+      <%= render "shared/modal_content_bets", bet: bet %>
+    <% end %>
+  </div>
 </div>

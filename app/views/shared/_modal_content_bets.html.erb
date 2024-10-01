@@ -1,0 +1,5 @@
+<h2>Are you sure you want to unlock this bet?</h1>
+<div class="c-modal__c-buttons">
+  <%= button_to 'Yes', admin_unlock_bet_path(bet), method: :patch, class: "c-button" %>
+  <%= button_tag 'No', data: { action: "click->modal#hideModal" }, class: "c-button--outline" %>
+</div>

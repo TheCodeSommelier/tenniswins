@@ -80,12 +80,14 @@ a {
 
 button, input[type="submit"] {
   border: none;
+  border-radius: 0;
 }
 
 input[type="checkbox"] {
   width: 1rem;
   height: 1rem;
   appearance: none;
+  border-radius: 0;
   border: 1px solid $primary-color;
   position: relative;
   margin: 0;
@@ -118,6 +120,7 @@ input {
   font-size: 1rem;
   color: $font-light;
   background-color: #30313d;
+  border-radius: 0;
 
   &:disabled {
     border: 1.2px solid rgba($color: $primary-color, $alpha: 0.7);

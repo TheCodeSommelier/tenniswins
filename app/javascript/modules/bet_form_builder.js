@@ -26,7 +26,7 @@ export default class BetFormBuilder {
 
   createOddInputsContainer() {
     const container = document.createElement("div");
-    container.classList.add("odd-cont");
+    container.classList.add("c-new-bets__c-odd");
     return container;
   }
 
@@ -61,6 +61,24 @@ export default class BetFormBuilder {
     const oddsFieldDivs = [this.createFormFieldDiv(), this.createFormFieldDiv(), this.createFormFieldDiv()];
     const oddInputsCont = this.createOddInputsContainer();
 
+    const betPickLabel = this.formUtils.buildLabel({
+      for: `bet_${betIndex}_pick`,
+      classes: ["form-label"],
+    });
+    betPickLabel.innerText = `Bet ${betIndex} pick:`;
+
+    const betPickInput = this.formUtils.buildInput({
+      name: `bets[bet${betIndex}][pick]`,
+      id: `bet_${betIndex}_us_odds`,
+      type: "text",
+      placeholder: "e.g., Muroň to win",
+      classes: ["pick-input"],
+      required: true
+    });
+
+    oddsFieldDivs[0].appendChild(betPickLabel);
+    oddsFieldDivs[0].appendChild(betPickInput);
+
     const betOddsLabel = this.formUtils.buildLabel({
       for: `bet_${betIndex}_eu_odds`,
       classes: ["form-label"],
@@ -81,8 +99,8 @@ export default class BetFormBuilder {
     oddInputsCont.appendChild(oddsFieldDivs[1])
     oddInputsCont.appendChild(oddsFieldDivs[2])
 
-    oddsFieldDivs[0].appendChild(betOddsLabel);
-    oddsFieldDivs[0].appendChild(betOddsInput);
+    oddsFieldDivs[1].appendChild(betOddsLabel);
+    oddsFieldDivs[1].appendChild(betOddsInput);
 
     const betUsOddsLabel = this.formUtils.buildLabel({
       for: `bet_${betIndex}_us_odds`,
@@ -100,26 +118,8 @@ export default class BetFormBuilder {
       required: true
     });
 
-    oddsFieldDivs[1].appendChild(betUsOddsLabel);
-    oddsFieldDivs[1].appendChild(betUsOddsInput);
-
-    const betPickLabel = this.formUtils.buildLabel({
-      for: `bet_${betIndex}_pick`,
-      classes: ["form-label"],
-    });
-    betPickLabel.innerText = `Bet ${betIndex} pick:`;
-
-    const betPickInput = this.formUtils.buildInput({
-      name: `bets[bet${betIndex}][pick]`,
-      id: `bet_${betIndex}_us_odds`,
-      type: "text",
-      placeholder: "e.g. Muroň to win",
-      classes: ["pick-input"],
-      required: true
-    });
-
-    oddsFieldDivs[2].appendChild(betPickLabel);
-    oddsFieldDivs[2].appendChild(betPickInput);
+    oddsFieldDivs[2].appendChild(betUsOddsLabel);
+    oddsFieldDivs[2].appendChild(betUsOddsInput);
 
     return oddInputsCont;
   }
@@ -138,7 +138,7 @@ export default class BetFormBuilder {
 
   createFormFieldDiv() {
     const div = document.createElement("div");
-    div.classList.add("field");
+    div.classList.add("u-form-group");
     return div;
   }
 }

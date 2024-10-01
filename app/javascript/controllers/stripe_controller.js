@@ -74,6 +74,8 @@ export default class extends Controller {
           ".c-checkout__error-messages"
         );
         messageContainer.textContent = error.message;
+        console.log(error);
+
         this.#removeProcessingMessage();
       }
     });

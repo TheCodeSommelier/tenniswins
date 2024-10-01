@@ -1,0 +1,14 @@
+.c-pass-reset, .c-change-pass {
+  @include flex-center;
+  flex-direction: column;
+
+  &__form {
+    width: 50%;
+  }
+
+  input[type="submit"] {
+    margin: 1rem 0;
+    @include responsive-font($font-size-xs-min, $font-size-xs-max);
+    width: 100%;
+  }
+}

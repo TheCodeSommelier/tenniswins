@@ -30,20 +30,21 @@
     }
   }
 
-  &__chart {
-    @include flex-center;
+  &__c-chart-money {
     position: sticky;
     top: 3rem;
+  }
+
+  &__chart {
     height: 400px;
     width: 400px;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
 
     @media (max-width: 768px) {
-      position: relative;
-      left: 50%;
-      margin-bottom: 4rem;
       height: 320px;
       width: 320px;
-      transform: translateX(-50%);
     }
   }
 
@@ -54,8 +55,6 @@
     padding: 1rem;
     border: 2px solid $primary-color;
     margin-top: 1rem;
-    position: sticky;
-    top: calc(300px + 3rem);
     border-radius: 8px;
   }
 

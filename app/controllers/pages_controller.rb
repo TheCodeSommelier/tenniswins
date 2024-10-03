@@ -26,4 +26,6 @@ class PagesController < ApplicationController
   def contact; end
 
   def cookie_consent; end
+
+  def pricing; end
 end

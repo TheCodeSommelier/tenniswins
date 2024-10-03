@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'membership', to: 'pages#membership'
   get 'contact', to: 'pages#contact'
   get 'cookie_consent', to: 'pages#cookie_consent'
+  get 'pricing', to: 'pages#pricing'
 
   namespace :admin do
     resources :bets, except: %i[show]

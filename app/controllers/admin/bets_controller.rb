@@ -164,7 +164,7 @@ module Admin
         redirect_to admin_bets_path,
                     notice: "Bet unlocked! Your current credit balance is => #{current_user.credits} credits"
       else
-        redirect_to admin_bets_path, alert: "You don't have enough credits..."
+        redirect_to pricing_path, alert: 'You don\'t have enough credits... Get a top up!'
       end
     end
 

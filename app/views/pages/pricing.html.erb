@@ -1,0 +1,43 @@
+<div class="c-pricing u-c-content">
+  <h1>Pricing</h1>
+
+  <div class="c-pricing__grid">
+    <div class="c-pricing__plan">
+      <h2>$14.99 / one time fee</h2>
+      <div class="c-pricing__plan-feats">
+        <ul>
+          <li>Access to Historical Picks and Data</li>
+          <li>Access to Discord / Telegram</li>
+          <li>Access to Daily Picks in Members Section for that day</li>
+          <li>You get 3 credits (1 credit = 1 bet)</li>
+        </ul>
+        <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_3_PICKS')), class: "c-button--outline" %>
+      </div>
+    </div>
+
+    <div class="c-pricing__plan--monthly">
+      <h2>$99.99 / monthly</h2>
+      <div class="c-pricing__plan-feats">
+        <ul>
+          <li>Access to Historical Picks and Data</li>
+          <li>Access to Discord / Telegram</li>
+          <li>Access to Daily Picks in Members Section</li>
+        </ul>
+        <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_UNL_PICKS')), class: "c-button--outline" %>
+      </div>
+    </div>
+
+    <div class="c-pricing__plan">
+      <h2>$39.99 / one time fee</h2>
+      <div class="c-pricing__plan-feats">
+        <ul>
+          <li>Access to Historical Picks and Data</li>
+          <li>Access to Discord / Telegram</li>
+          <li>Access to Daily Picks in Members Section for a week</li>
+          <li>You get 15 credits (1 credit = 1 bet)</li>
+        </ul>
+        <%= link_to 'Pick me!', stripe_checkout_path(prod_id: ENV.fetch('STRIPE_PR_ID_15_PICKS')), class: "c-button--outline" %>
+      </div>
+    </div>
+  </div>
+</div>

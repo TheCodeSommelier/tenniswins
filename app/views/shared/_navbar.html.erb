@@ -6,6 +6,7 @@
   <div class="navbar__menu" data-navbar-target="menu">
     <%= link_to 'Home', root_path, class: "navbar__link" %>
     <%= link_to 'How it works', root_path(anchor: 'how-it-works'), class: "navbar__link" %>
+    <%= link_to 'Pricing', pricing_path, class: "navbar__link" %>
     <% unless user_signed_in? %>
       <%= link_to "Sign up", new_user_registration_path, class: "c-button--outline" %>
     <% end %>

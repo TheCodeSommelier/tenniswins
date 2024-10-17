@@ -25,9 +25,9 @@ Things you may want to cover:
 
 ## SCSS Conventions
 
-```c-dashboard``` == Container Dashboard
-```__element``` == Element
-```--modifier``` == Modifier
+```c-dashboard``` == Container Dashboard\n
+```__element``` == Element\n
+```--modifier``` == Modifier\n
 
 ```
   .c-button {

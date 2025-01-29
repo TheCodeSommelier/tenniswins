@@ -1,7 +1,3 @@
-# 🛑 To date this is my latest work 🛑
-
-*Please keep in mind this is not a completely finished project*
-
 ## SCSS Conventions
 
 ```c-dashboard``` == Container Dashboard
@@ -24,3 +20,5 @@
     }
   }
 ```
+
+## *Still under development*
